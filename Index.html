@@ -1,0 +1,3165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>GUide - LET'S GET TO KNOW YOUR HEALTH</title>
+  
+  <!-- Tailwind CSS CDN untuk styling modern, bersih, dan responsif -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Plus Jakarta Sans untuk tipografi yang ramah dan mudah dibaca -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons untuk ikon aplikasi yang bersih dan tidak intimidatif -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              300: '#86efac',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+            },
+            neutralbg: '#f8faf9'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Reset & Pengaturan Mobile-First Container */
+    body {
+      background-color: #e2e8f0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Frame aplikasi mobile di layar desktop */
+    .app-shell {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background-color: #f8faf9;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Sembunyikan scrollbar namun tetap bisa di-scroll */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Animasi transisi halus */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+
+    @keyframes pulseSoft {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+    .animate-pulse-soft {
+      animation: pulseSoft 2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+  <div class="app-shell" id="app-container">
+    
+    <!-- =====================================================================
+         1. SPLASH SCREEN (Muncul pertama kali saat dibuka)
+         ===================================================================== -->
+    <div id="splash-screen" class="fixed inset-0 z-50 max-w-[480px] mx-auto bg-gradient-to-br from-brand-600 via-brand-500 to-emerald-600 text-white flex flex-col items-center justify-center p-8 text-center transition-opacity duration-500">
+      <div class="w-24 h-24 bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center mb-6 shadow-xl animate-pulse-soft">
+        <i data-lucide="droplets" class="w-12 h-12 text-white"></i>
+      </div>
+      <h1 class="text-3xl font-extrabold tracking-tight mb-2">TOILET TALK</h1>
+      <p class="text-brand-100 text-sm font-medium max-w-xs">
+        "Let's Talk About What Your Body Tells You."
+      </p>
+      <div class="mt-12 flex items-center gap-2 text-xs text-brand-100/80">
+        <span class="w-2 h-2 rounded-full bg-white animate-bounce"></span>
+        <span>Memuat konten edukasi offline...</span>
+      </div>
+    </div>
+
+    <!-- =====================================================================
+         2. WELCOME PAGE (Muncul setelah Splash Screen, tanpa login/registrasi)
+         ===================================================================== -->
+    <div id="welcome-screen" class="hidden fixed inset-0 z-40 max-w-[480px] mx-auto bg-white flex flex-col justify-between p-6 overflow-y-auto">
+      <div class="pt-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 text-brand-700 text-xs font-semibold mb-6">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+        </div>
+
+        <div class="w-full h-48 rounded-3xl bg-gradient-to-tr from-brand-100 to-emerald-50 flex flex-col items-center justify-center mb-6 p-6 text-center border border-brand-200/60">
+          <div class="w-16 h-16 rounded-2xl bg-brand-500 text-white flex items-center justify-center shadow-md mb-3">
+            <i data-lucide="heart-pulse" class="w-8 h-8"></i>
+          </div>
+          <p class="text-brand-900 font-bold text-lg">GUide</p>
+          <p class="text-brand-700 text-xs mt-1">Understand Your GU, Take Care of You</p>
+        </div>
+
+        <h2 class="text-2xl font-extrabold text-slate-900 leading-snug mb-3">
+          Selamat Datang di <span class="text-brand-600">GUide</span>
+        </h2>
+        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+          [Yuk kenal lebih dekat terkait kesehatan saluran kemih dan organ reproduksi kamu✨
+          Lewat GUide kamu bisa menemukan informasi kesehatan yang mudah dipahami dan tips sederhana untuk lebih mengenal tubuhmu]
+        </p>
+
+        <!-- Poin Keunggulan -->
+        <div class="space-y-3 mb-8">
+          <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-100">
+            <div class="p-2 rounded-xl bg-brand-100 text-brand-700 shrink-0">
+              <i data-lucide="wifi-off" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-800">Akses Offline & Lokal</h4>
+              <p class="text-xs text-slate-500 mt-0.5">Progres belajar, skor kuis, dan bookmark tersimpan otomatis di perangkatmu.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-100">
+            <div class="p-2 rounded-xl bg-brand-100 text-brand-700 shrink-0">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-800">Interaktif & Praktis</h4>
+              <p class="text-xs text-slate-500 mt-0.5">Cek mitos vs fakta, simulasi skenario toilet harian, dan uji pemahaman lewat mini kuis.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pb-4">
+        <button onclick="enterMainApp()" class="w-full py-4 px-6 rounded-2xl bg-brand-600 hover:bg-brand-700 active:scale-[0.98] text-white font-bold text-sm shadow-lg shadow-brand-500/30 transition-all flex items-center justify-center gap-2">
+          <span>START NOW!</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- =====================================================================
+         3. HEADER APLIKASI UTAMA
+         ===================================================================== -->
+    <header class="sticky top-0 z-20 bg-white/90 backdrop-blur-md border-b border-slate-100 px-5 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-sm">
+          <i data-lucide="droplets" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h1 class="text-base font-extrabold text-slate-900 leading-none">GUide</h1>
+          <p class="text-[10px] font-medium text-brand-600 mt-0.5">Understand Your GU, Take Care of You</p>
+        </div>
+      </div>
+      <button onclick="showWelcomeAgain()" title="Info Aplikasi" class="p-2 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-600 transition-colors">
+        <i data-lucide="info" class="w-4 h-4"></i>
+      </button>
+    </header>
+
+    <!-- =====================================================================
+         4. MAIN CONTENT AREA (5 MENU UTAMA)
+         ===================================================================== -->
+    <main id="main-content" class="flex-1 pb-24 px-5 pt-5 overflow-y-auto">
+      
+      <!-- -------------------------------------------------------------------
+           MENU 1: HOME (BERANDA)
+           ------------------------------------------------------------------- -->
+      <section id="view-home" class="space-y-5 animate-fade-in">
+        <!-- Welcome Banner -->
+        <div class="p-5 rounded-3xl bg-gradient-to-br from-brand-600 to-emerald-700 text-white shadow-md relative overflow-hidden">
+          <div class="relative z-10">
+            <span class="inline-block px-2.5 py-1 rounded-lg bg-white/20 text-[11px] font-semibold mb-2">
+              Hai, GUider! 👋
+            </span>
+            <h2 class="text-xl font-extrabold leading-snug mb-1">
+              LET'S GET TO KNOW YOUR HEALTH
+            </h2>
+            <p class="text-xs text-brand-100 leading-relaxed">
+              Learn, Understand, and Take Care of Your Body!
+            </p>
+          </div>
+          <i data-lucide="sparkles" class="w-24 h-24 text-white/10 absolute -right-4 -bottom-4"></i>
+        </div>
+
+        <!-- Learning Progress Card -->
+        <div class="p-4 rounded-3xl bg-white border border-slate-100 shadow-sm">
+          <div class="flex items-center justify-between mb-2.5">
+            <div class="flex items-center gap-2">
+              <div class="p-1.5 rounded-lg bg-brand-50 text-brand-600">
+                <i data-lucide="award" class="w-4 h-4"></i>
+              </div>
+              <h3 class="text-sm font-bold text-slate-800">Your Progress</h3>
+            </div>
+            <span id="home-progress-percent" class="text-xs font-extrabold text-brand-600">0%</span>
+          </div>
+          <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden mb-3">
+            <div id="home-progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+          </div>
+          <div class="grid grid-cols-3 gap-2 text-center pt-1 border-t border-slate-50">
+            <div>
+              <p id="stat-quiz-count" class="text-sm font-extrabold text-slate-800">0</p>
+              <p class="text-[10px] text-slate-500">Kuis Selesai</p>
+            </div>
+            <div class="border-x border-slate-100">
+              <p id="stat-scenario-count" class="text-sm font-extrabold text-slate-800">0</p>
+              <p class="text-[10px] text-slate-500">Skenario</p>
+            </div>
+            <div>
+              <p id="stat-bookmark-count" class="text-sm font-extrabold text-slate-800">0</p>
+              <p class="text-[10px] text-slate-500">Tersimpan</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Daily GU Fact Card -->
+        <div class="p-4 rounded-3xl bg-amber-50/70 border border-amber-200/60">
+          <div class="flex items-center justify-between mb-2">
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-800">
+              <i data-lucide="lightbulb" class="w-4 h-4 text-amber-500"></i>
+              Daily GU Fact😉
+            </span>
+            <button onclick="rotateDailyFact()" class="text-[11px] font-semibold text-amber-700 hover:underline flex items-center gap-1">
+              <i data-lucide="refresh-cw" class="w-3 h-3"></i> Ganti
+            </button>
+          </div>
+          <p id="daily-fact-text" class="text-xs text-slate-700 leading-relaxed font-medium">
+            [ISI FAKTA HARIAN GENITOURINARI DI SINI]
+          </p>
+        </div>
+
+        <!-- Quick Access Menu -->
+        <div>
+          <h3 class="text-sm font-bold text-slate-800 mb-3">Our Featured</h3>
+          <div class="grid grid-cols-2 gap-3">
+            <button onclick="switchTab('myth')" class="p-4 rounded-3xl bg-white border border-slate-100 shadow-sm hover:border-brand-300 transition-all text-left group">
+              <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <i data-lucide="scale" class="w-5 h-5"></i>
+              </div>
+              <h4 class="text-xs font-bold text-slate-800">Myth or Fact</h4>
+              <p class="text-[11px] text-slate-500 mt-0.5">Cek kebenaran info kesehatan</p>
+            </button>
+
+            <button onclick="switchTab('quiz')" class="p-4 rounded-3xl bg-white border border-slate-100 shadow-sm hover:border-brand-300 transition-all text-left group">
+              <div class="w-10 h-10 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <i data-lucide="help-circle" class="w-5 h-5"></i>
+              </div>
+              <h4 class="text-xs font-bold text-slate-800">Mini Quiz</h4>
+              <p class="text-[11px] text-slate-500 mt-0.5">Uji pengetahuanmu sekarang</p>
+            </button>
+
+            <button onclick="switchTab('scenario')" class="p-4 rounded-3xl bg-white border border-slate-100 shadow-sm hover:border-brand-300 transition-all text-left group">
+              <div class="w-10 h-10 rounded-2xl bg-green-50 text-green-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <i data-lucide="message-square-dashed" class="w-5 h-5"></i>
+              </div>
+              <h4 class="text-xs font-bold text-slate-800">Toilet Scenario</h4>
+              <p class="text-[11px] text-slate-500 mt-0.5">Simulasi keputusan harian</p>
+            </button>
+
+            <button onclick="switchTab('corner')" class="p-4 rounded-3xl bg-white border border-slate-100 shadow-sm hover:border-brand-300 transition-all text-left group">
+              <div class="w-10 h-10 rounded-2xl bg-lime-50 text-lime-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <i data-lucide="book-open" class="w-5 h-5"></i>
+              </div>
+              <h4 class="text-xs font-bold text-slate-800">Health Corner</h4>
+              <p class="text-[11px] text-slate-500 mt-0.5">Artikel, infografis & FAQ</p>
+            </button>
+          </div>
+        </div>
+
+        <!-- Featured Topic -->
+        <div class="p-4 rounded-3xl bg-white border border-slate-100 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-brand-50 text-brand-700 text-[10px] font-bold">Topik Pilihan</span>
+            <button onclick="switchTab('corner')" class="text-xs font-semibold text-brand-600">Lihat Semua</button>
+          </div>
+          <h4 id="featured-topic-title" class="text-sm font-bold text-slate-900 mb-1">
+            [ISI JUDUL TOPIK PILIHAN DI SINI]
+          </h4>
+          <p id="featured-topic-desc" class="text-xs text-slate-500 line-clamp-2 mb-3">
+            [ISI RINGKASAN TOPIK PILIHAN DI SINI]
+          </p>
+          <button onclick="openFeaturedArticle()" class="w-full py-2.5 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-xs transition-colors">
+            Read More
+          </button>
+        </div>
+      </section>
+
+      <!-- -------------------------------------------------------------------
+           MENU 2: MYTH VS FACT (MITOS VS FAKTA)
+           ------------------------------------------------------------------- -->
+      <section id="view-myth" class="hidden space-y-4 animate-fade-in">
+        <div>
+          <h2 class="text-lg font-extrabold text-slate-900">Myth vs Fact</h2>
+          <p class="text-xs text-slate-500">Pelajari fakta medis di balik kebiasaan sehari-hari.</p>
+        </div>
+
+        <!-- Search & Filter Bookmark -->
+        <div class="flex gap-2">
+          <div class="relative flex-1">
+            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+            <input type="text" id="myth-search" oninput="renderMythList()" placeholder="Cari pernyataan..." class="w-full pl-9 pr-4 py-2.5 rounded-2xl bg-white border border-slate-200 text-xs focus:outline-none focus:border-brand-500" />
+          </div>
+          <button id="myth-bookmark-filter" onclick="toggleMythBookmarkFilter()" class="px-3.5 py-2.5 rounded-2xl bg-white border border-slate-200 text-slate-600 hover:border-brand-500 transition-colors flex items-center gap-1.5 text-xs font-semibold">
+            <i data-lucide="bookmark" class="w-4 h-4"></i>
+            <span>Tersimpan</span>
+          </button>
+        </div>
+
+        <!-- Category Chips -->
+        <div id="myth-categories" class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+          <!-- Di-render otomatis oleh JS -->
+        </div>
+
+        <!-- List Cards -->
+        <div id="myth-list" class="space-y-3">
+          <!-- Di-render otomatis oleh JS -->
+        </div>
+      </section>
+
+      <!-- -------------------------------------------------------------------
+           MENU 3: MINI QUIZ
+           ------------------------------------------------------------------- -->
+      <section id="view-quiz" class="hidden space-y-4 animate-fade-in">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-extrabold text-slate-900">Mini Quiz</h2>
+            <p class="text-xs text-slate-500">Uji pemahamanmu seputar kesehatan genitourinari.</p>
+          </div>
+          <button onclick="toggleQuizHistoryModal()" class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-700 flex items-center gap-1.5 shadow-sm">
+            <i data-lucide="history" class="w-3.5 h-3.5 text-brand-600"></i>
+            <span>Riwayat</span>
+          </button>
+        </div>
+
+        <!-- Quiz Container (Mode Pilih Kategori / Mode Pertanyaan / Mode Hasil) -->
+        <div id="quiz-container">
+          <!-- Di-render dinamis oleh JS -->
+        </div>
+      </section>
+
+      <!-- -------------------------------------------------------------------
+           MENU 4: TOILET TALK SCENARIO
+           ------------------------------------------------------------------- -->
+      <section id="view-scenario" class="hidden space-y-4 animate-fade-in">
+        <div>
+          <h2 class="text-lg font-extrabold text-slate-900">Toilet Talk Scenario</h2>
+          <p class="text-xs text-slate-500">Apa yang akan kamu lakukan pada situasi sehari-hari berikut?</p>
+        </div>
+
+        <!-- Scenario List / Active Scenario Container -->
+        <div id="scenario-container" class="space-y-3">
+          <!-- Di-render dinamis oleh JS -->
+        </div>
+      </section>
+
+      <!-- -------------------------------------------------------------------
+           MENU 5: HEALTH CORNER
+           ------------------------------------------------------------------- -->
+      <section id="view-corner" class="hidden space-y-4 animate-fade-in">
+        <div>
+          <h2 class="text-lg font-extrabold text-slate-900">Health Corner</h2>
+          <p class="text-xs text-slate-500">Artikel edukasi, infografis, dan tanya jawab (FAQ).</p>
+        </div>
+
+        <!-- Sub-tabs: Artikel | Infografis | FAQ -->
+        <div class="grid grid-cols-3 gap-1.5 p-1 rounded-2xl bg-slate-200/70">
+          <button onclick="switchCornerTab('articles')" id="tab-corner-articles" class="py-2 rounded-xl text-xs font-bold bg-white text-brand-700 shadow-sm transition-all">Artikel</button>
+          <button onclick="switchCornerTab('infographics')" id="tab-corner-infographics" class="py-2 rounded-xl text-xs font-semibold text-slate-600 transition-all">Infografis</button>
+          <button onclick="switchCornerTab('faq')" id="tab-corner-faq" class="py-2 rounded-xl text-xs font-semibold text-slate-600 transition-all">FAQ</button>
+        </div>
+
+        <!-- Search Bar untuk Health Corner -->
+        <div class="relative">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+          <input type="text" id="corner-search" oninput="renderCornerContent()" placeholder="Cari topik kesehatan..." class="w-full pl-9 pr-4 py-2.5 rounded-2xl bg-white border border-slate-200 text-xs focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <!-- Konten Health Corner -->
+        <div id="corner-content" class="space-y-3">
+          <!-- Di-render dinamis oleh JS -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- =====================================================================
+         5. MODAL / BOTTOM SHEET UNTUK DETAIL ARTIKEL & RIWAYAT KUIS
+         ===================================================================== -->
+    <div id="detail-modal" class="hidden fixed inset-0 z-50 max-w-[480px] mx-auto bg-slate-900/50 backdrop-blur-xs flex items-end justify-center">
+      <div class="bg-white w-full max-h-[88vh] rounded-t-3xl p-6 overflow-y-auto animate-fade-in shadow-2xl">
+        <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100 sticky top-0 bg-white">
+          <span id="modal-badge" class="px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700 text-[11px] font-bold">Detail</span>
+          <button onclick="closeModal()" class="p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+        <div id="modal-body" class="space-y-4">
+          <!-- Konten modal dinamis -->
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================================
+         6. BOTTOM NAVIGATION BAR (5 MENU UTAMA)
+         ===================================================================== -->
+    <nav class="fixed bottom-0 z-30 w-full max-w-[480px] bg-white/95 backdrop-blur-md border-t border-slate-200/80 px-2 py-2 flex items-center justify-around">
+      <button onclick="switchTab('home')" id="nav-home" class="nav-item flex flex-col items-center justify-center py-1 px-2 rounded-2xl text-brand-600 transition-all">
+        <i data-lucide="home" class="w-5 h-5 mb-0.5"></i>
+        <span class="text-[10px] font-bold">Home</span>
+      </button>
+
+      <button onclick="switchTab('myth')" id="nav-myth" class="nav-item flex flex-col items-center justify-center py-1 px-2 rounded-2xl text-slate-400 hover:text-slate-600 transition-all">
+        <i data-lucide="scale" class="w-5 h-5 mb-0.5"></i>
+        <span class="text-[10px] font-medium">Myth vs Fact</span>
+      </button>
+
+      <button onclick="switchTab('quiz')" id="nav-quiz" class="nav-item flex flex-col items-center justify-center py-1 px-2 rounded-2xl text-slate-400 hover:text-slate-600 transition-all">
+        <i data-lucide="help-circle" class="w-5 h-5 mb-0.5"></i>
+        <span class="text-[10px] font-medium">Mini Quiz</span>
+      </button>
+
+      <button onclick="switchTab('scenario')" id="nav-scenario" class="nav-item flex flex-col items-center justify-center py-1 px-2 rounded-2xl text-slate-400 hover:text-slate-600 transition-all">
+        <i data-lucide="message-square-dashed" class="w-5 h-5 mb-0.5"></i>
+        <span class="text-[10px] font-medium">Scenario</span>
+      </button>
+
+      <button onclick="switchTab('corner')" id="nav-corner" class="nav-item flex flex-col items-center justify-center py-1 px-2 rounded-2xl text-slate-400 hover:text-slate-600 transition-all">
+        <i data-lucide="book-open" class="w-5 h-5 mb-0.5"></i>
+        <span class="text-[10px] font-medium">Health Corner</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- =======================================================================
+       7. JAVASCRIPT: DATA STRUCTURE, LOCAL STORAGE & APPLICATION LOGIC
+       ======================================================================= -->
+  <script>
+    /**
+     * =========================================================================
+     * BAGIAN A: DATABASE KONTEN EDUKASI (TEMPLATE SIAP ISI)
+     * Silakan isi bagian yang bertanda [ISI ... DI SINI] sesuai materi Anda.
+     * Struktur data sudah disesuaikan dengan kebutuhan sistem aplikasi.
+     * =========================================================================
+     */
+
+    // 1. KATEGORI UTAMA
+    function safeRenderIcons() {
+  try {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+  } catch (e) {
+    console.warn("Ikon belum siap:", e);
+  }
+}
+    const CATEGORIES = [
+      "Semua",
+      "Urine & BAK",
+      "Kidney Health",
+      "Bladder Health",
+      "Urinary Problems",
+      "Daily Habits"
+    ];
+
+    // 2. DAILY GU FACTS (Fakta Singkat di Beranda)
+    const DAILY_FACTS = [
+      "Ginjal manusia berbentuk mirip kacang merah dan ukurannya kurang lebih sebesar kepalan tangan",
+      "Ginjal terus menyaring darah untuk membuang zat sisa dan kelebihan cairan dari tubuh",
+      "Ginjal membantu mengatur tekanan darah, keseimbangan cairan, dan produksi sel darah merah",
+      "Seseorang tetap bisa hidup sehat dengan satu ginjal yang berfungsi dengan baik, asalkan menjaga kesehatannya",
+      "Batu ginjal terbentuk dari mineral yang mengeras di dalam ginjal",
+      "Kandung kemih bekerja seperti balon yang dapat mengembang saat menampung urine dan mengecil kembali setelah dikosongkan",
+      "Urine berwarna kuning pucat menandakan tubuh mendapatkan cukup cairan",
+      "Kebiasaan menahan buang air kecil terlalu lama dapat mengganggu proses pengosongan kandung kemih",
+      "Minum cukup air membantu tubuh menghasilkan urine dan membuang zat sisa",
+      "Perempuan lebih rentan mengalami ISK karena saluran kencing perempuan lebih pendek dibandingkan laki-laki",
+      "Urine berwarna kuning tua atau lebih pekat dapat menandakan tubuh kekurangan cairan",
+      "Busa yang sering muncul dan sulit hilang dapat menjadi tanda adanya protein dalam urine",
+      "Kurang minum, makan makanan tertentu, dan konsumsi obat tertentu dapat mengubah bau urine",
+      "Kadar gula darah yang tinggi dapat meningkatkan frekuensi buang air kecil",
+      "Sensasi kandung kemih yang masih terasa penuh setelah kencing bisa menjadi tanda urine tidak keluar seluruhnya",
+      "Keluarnya urine tanpa disadari disebut inkontinensia urine",
+      "Anyang-anyangan bisa menjadi tanda infeksi saluran kemih",
+      "Nyeri saat buang air kecil bukan kondisi yang normal",
+      "Ginjal terus menyaring darah dan membuang zat sisa sepanjang hari, termasuk ketika kamu sedang beristirahat",
+      "Setiap ginjal memiliki sekitar satu juta penyaring kecil yang disebut nefron",
+      "Kebutuhan cairan setiap orang berbeda-beda, tergantung aktivitas dan kondisi kesehatannya",
+    ];
+
+    // 3. DATA MYTH VS FACT
+    // Verdict yang didukung: "Myth" | "Fact" | "Perlu Konteks"
+    const MYTH_FACT_DATA = [
+      {
+        id: "mf-01",
+        title: "Myth/Fact",
+        category: "Urine & BAK",
+        statement: "Warna urine yang kuning pekat bisa menjadi tanda tubuh kekurangan cairan",
+        verdict: "Fact", // Pilihan: "Myth", "Fact", atau "Perlu Konteks"
+        explanation: "Urine yang berwarna kuning pekat dapat menunjukkan bahwa tubuh membutuhkan lebih banyak cairan. Warna urine juga dapat dipengaruhi makanan atau obat-obatan yang dikonsumsi",
+        reference: "MedlinePlus - Urine: Abnormal Color",
+        dateUpdated: "2026-11-25"
+      },
+      {
+        id: "mf-02",
+        title: "Myth/Fact",
+        category: "Urine & BAK",
+        statement: "Urine yang bening selalu menandakan ginjal dalam kondisi sehat",
+        verdict: "Myth",
+        explanation: "Urine bening bisa terjadi karena seseorang minum banyak air. Namun, warna urine saja tidak cukup untuk menentukan apakah ginjal sehat atau tidak",
+        reference: "MedlinePlus - Urine: Abnormal Color",
+        dateUpdated: "2026-11-25"
+      },
+      {
+        id: "mf-03",
+        title: "Myth/Fact",
+        category: "Urine & BAK",
+        statement: "Urine berwarna merah atau merah muda perlu diwaspadai",
+        verdict: "Fact",
+        explanation: "Warna merah atau merah muda tersebut dapat menandakan adanya darah dalam urine. Meskipun beberapa makanan dan obat juga dapat mengubah warna urine, kondisi ini perlu diperiksakan",
+        reference: "MedlinePlus - Urine: Abnormal Color",
+        dateUpdated: "2026-11-25"
+      },
+      {
+        id: "mf-04",
+        title: "Myth/Fact",
+        category: "Urine & BAK",
+        statement: "Urine yang berbusa terus-menerus bisa menjadi tanda adanya protein dalam urine",
+        verdict: "Fact",
+        explanation: "Busa yang menetap dapat berkaitan dengan proteinuria, yaitu kondisi ketika protein keluar bersama urine. Jika terjadi berulang, kondisi ini perlu dievaluasi",
+        reference: "MedlinePlus - Protein in Urine",
+        dateUpdated: "2026-11-25"
+      },
+      {
+        id: "mf-05",
+        title: "Myth/Fact",
+        category: "Urine & BAK",
+        statement: "Urine yang berbau menyengat selalu menandakan infeksi saluran kemih",
+        verdict: "Myth",
+        explanation: "Bau urine dapat berubah karena kurang minum, makanan tertentu, atau obat-obatan. Bau saja tidak cukup untuk memastikan adanya infeksi",
+        reference: "MedlinePlus - Urine Odor",
+        dateUpdated: "2026-11-25"
+      },
+      {
+        id: "mf-06",
+        title: "Myth/Fact",
+        category: "Urine & BAK",
+        statement: "Frekuensi buang air kecil setiap orang harus sama",
+        verdict: "Myth",
+        explanation: "Frekuensi BAK dapat berbeda-beda tergantung jumlah cairan yang diminum, aktivitas, produksi urine, kapasitas kandung kemih, dan kondisi kesehatan",
+        reference: "NIDDK - The Urinary Tract & How It Works",
+        dateUpdated: "2026-11-25"
+      },
+      {
+        id: "mf-07",
+        title: "Myth/Fact",
+        category: "Urine & BAK",
+        statement: "Sering buang air kecil bisa menjadi salah satu tanda diabetes",
+        verdict: "Fact",
+        explanation: "Kadar gula darah yang tinggi dapat membuat ginjal membuang lebih banyak glukosa melalui urine. Hal ini dapat meningkatkan produksi urine sehingga seseorang lebih sering BAK",
+        reference: "NIDDK - Symptoms & Causes of Diabetes",
+        dateUpdated: "2026-11-25"
+      },
+      {
+        id: "mf-08",
+        title: "Myth/Fact",
+        category: "Urine & BAK",
+        statement: "Rasa perih saat buang air kecil merupakan hal yang normal jika hanya terjadi sesekali",
+        verdict: "Myth",
+        explanation: "Rasa perih atau terbakar saat BAK dapat menjadi tanda infeksi atau iritasi pada saluran kemih. Jika keluhan berlanjut atau disertai gejala lain, sebaiknya lakukan pemeriksaan",
+        reference: "MedlinePlus - Urinary Tract Infections",
+        dateUpdated: "2026-11-25"
+      },
+      {
+        id: "mf-09",
+        title: "Myth/Fact",
+        category: "Urine & BAK",
+        statement: "Urine yang keruh dapat menjadi salah satu tanda infeksi saluran kemih",
+        verdict: "Fact",
+        explanation: "Urine keruh dapat terjadi akibat adanya bakteri, sel darah putih, atau zat lain dalam urine. Namun, urine keruh saja belum cukup untuk memastikan diagnosis infeksi",
+        reference: "MedlinePlus - Urine: Abnormal Color",
+        dateUpdated: "2026-11-25"
+      },
+      {
+        id: "mf-10",
+        title: "Myth/Fact",
+        category: "Urine & BAK",
+        statement: "Urine yang berwarna gelap seperti teh atau cola tidak boleh diabaikan",
+        verdict: "Fact",
+        explanation: "Warna urine yang sangat gelap dapat berkaitan dengan dehidrasi berat, gangguan hati, atau kondisi lain. Jika tidak membaik atau disertai gejala lain, segera periksakan diri",
+        reference: "MedlinePlus - Urine: Abnormal Color",
+        dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-11",
+       title: "Myth/Fact",
+       category: "Kidney Health",
+       statement: "Ginjal hanya berfungsi untuk menghasilkan urine",
+       verdict: "Myth",
+       explanation: "Ginjal juga membantu mengatur keseimbangan cairan dan elektrolit, menjaga tekanan darah, serta menghasilkan hormon yang berperan dalam pembentukan sel darah merah.",
+       reference: "NIDDK - What Is Kidney Failure?",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-12",
+       title: "Myth/Fact",
+       category: "Kidney Health",
+       statement: "Seseorang tetap bisa hidup normal dengan satu ginjal yang sehat",
+       verdict: "Fact",
+       explanation: "Satu ginjal yang sehat umumnya mampu menjalankan fungsi penyaringan darah untuk memenuhi kebutuhan tubuh. Namun, kesehatannya tetap perlu dijaga.",
+       reference: "NIDDK - Solitary or Single-functioning Kidney",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-13",
+       title: "Myth/Fact",
+       category: "Kidney Health",
+       statement: "Penyakit ginjal selalu menimbulkan gejala sejak tahap awal",
+       verdict: "Myth",
+       explanation: "Penyakit ginjal kronis sering kali tidak menunjukkan gejala pada tahap awal. Pemeriksaan darah dan urine dapat membantu mendeteksi gangguan ginjal lebih dini.",
+       reference: "NIDDK - Chronic Kidney Disease",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-14",
+       title: "Myth/Fact",
+       category: "Kidney Health",
+       statement: "Tekanan darah tinggi dapat merusak ginjal",
+       verdict: "Fact",
+       explanation: "Tekanan darah tinggi dapat merusak pembuluh darah kecil di ginjal sehingga kemampuan ginjal untuk menyaring darah menurun.",
+       reference: "NIDDK - High Blood Pressure & Kidney Disease",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-15",
+       title: "Myth/Fact",
+       category: "Kidney Health",
+       statement: "Diabetes tidak berhubungan dengan kesehatan ginjal",
+       verdict: "Myth",
+       explanation: "Diabetes merupakan salah satu penyebab utama penyakit ginjal kronis. Kadar gula darah yang tinggi dalam jangka panjang dapat merusak ginjal.",
+       reference: "NIDDK - Diabetic Kidney Disease",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-16",
+       title: "Myth/Fact",
+       category: "Kidney Health",
+       statement: "Protein dalam urine bisa menjadi tanda adanya gangguan ginjal",
+       verdict: "Fact",
+       explanation: "Ginjal yang sehat umumnya mempertahankan protein agar tetap berada dalam darah. Protein yang ditemukan secara menetap dalam urine dapat menjadi tanda kerusakan ginjal.",
+       reference: "MedlinePlus - Protein in Urine",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-17",
+       title: "Myth/Fact",
+       category: "Kidney Health",
+       statement: "Batu ginjal hanya dapat dialami oleh orang lanjut usia",
+       verdict: "Myth",
+       explanation: "Batu ginjal dapat dialami oleh berbagai kelompok usia. Risikonya dipengaruhi oleh faktor seperti kurang minum, pola makan, dan kondisi kesehatan tertentu.",
+       reference: "NIDDK - Kidney Stones",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-18",
+       title: "Myth/Fact",
+       category: "Kidney Health",
+       statement: "Semua batu ginjal harus dioperasi",
+       verdict: "Myth",
+       explanation: "Penanganan batu ginjal bergantung pada ukuran, lokasi, dan gejalanya. Batu berukuran kecil terkadang dapat keluar sendiri, sedangkan batu yang lebih besar mungkin membutuhkan tindakan medis.",
+       reference: "NIDDK - Treatment for Kidney Stones",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-19",
+       title: "Myth/Fact",
+       category: "Kidney Health",
+       statement: "Mengonsumsi obat atau suplemen herbal secara berlebihan dapat membahayakan ginjal",
+       verdict: "Fact",
+       explanation: "Beberapa obat dan produk herbal dapat berisiko mengganggu fungsi ginjal, terutama jika digunakan tanpa pengawasan. Sebaiknya konsultasikan penggunaan obat dan suplemen kepada tenaga kesehatan.",
+       reference: "NIDDK - Managing Chronic Kidney Disease",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-20",
+       title: "Myth/Fact",
+       category: "Kidney Health",
+       statement: "Ginjal tetap bekerja saat kita sedang tidur",
+       verdict: "Fact",
+       explanation: "Ginjal bekerja sepanjang waktu untuk menyaring darah, membuang zat sisa, dan menjaga keseimbangan cairan tubuh, termasuk ketika kita sedang tidur.",
+       reference: "NIDDK - The Urinary Tract & How It Works",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-21",
+       title: "Myth/Fact",
+       category: "Bladder Health",
+       statement: "Kandung kemih berfungsi sebagai tempat penyimpanan urine sementara",
+       verdict: "Fact",
+       explanation: "Urine yang diproduksi ginjal akan dialirkan melalui ureter menuju kandung kemih. Urine kemudian dikeluarkan melalui uretra saat kita buang air kecil.",
+       reference: "NIDDK - The Urinary Tract & How It Works",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-22",
+       title: "Myth/Fact",
+       category: "Bladder Health",
+       statement: "Kandung kemih tidak dapat mengembang ketika terisi urine",
+       verdict: "Myth",
+       explanation: "Dinding kandung kemih memiliki otot yang dapat meregang saat urine terkumpul. Kemampuan ini memungkinkan kandung kemih menampung urine sebelum dikeluarkan.",
+       reference: "NIDDK - The Urinary Tract & How It Works",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-23",
+       title: "Myth/Fact",
+       category: "Bladder Health",
+       statement: "Kebiasaan menahan buang air kecil terlalu lama dapat mengganggu kesehatan kandung kemih",
+       verdict: "Fact",
+       explanation: "Menunda BAK secara terus-menerus bukan kebiasaan yang dianjurkan. Kebiasaan berkemih yang sehat membantu menjaga fungsi kandung kemih dan menghindari masalah pengosongan urine.",
+       reference: "NIDDK - Urinary Retention",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-24",
+       title: "Myth/Fact",
+       category: "Bladder Health",
+       statement: "Mengompol atau urine yang keluar tanpa disengaja hanya dialami oleh anak-anak",
+       verdict: "Myth",
+       explanation: "Orang dewasa juga dapat mengalami inkontinensia urine, yaitu kondisi ketika urine keluar tanpa dapat dikendalikan. Penyebabnya dapat berkaitan dengan kandung kemih, otot, saraf, atau kondisi medis tertentu.",
+       reference: "NIDDK - Bladder Control Problems",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-25",
+       title: "Myth/Fact",
+       category: "Bladder Health",
+       statement: "Inkontinensia urine merupakan bagian normal dari proses penuaan dan tidak perlu ditangani",
+       verdict: "Myth",
+       explanation: "Meskipun risikonya dapat meningkat seiring bertambahnya usia, inkontinensia urine bukan kondisi yang harus dianggap normal. Tersedia berbagai pilihan penanganan sesuai penyebabnya.",
+       reference: "NIDDK - Treatment for Bladder Control Problems",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-26",
+       title: "Myth/Fact",
+       category: "Bladder Health",
+       statement: "Minuman berkafein dapat memperburuk keluhan kandung kemih pada sebagian orang",
+       verdict: "Fact",
+       explanation: "Kafein dalam kopi, teh, atau minuman energi dapat meningkatkan produksi urine dan memicu rasa ingin buang air kecil pada sebagian orang.",
+       reference: "NIDDK - Prevention of Bladder Control Problems",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-27",
+       title: "Myth/Fact",
+       category: "Bladder Health",
+       statement: "Otot dasar panggul tidak berpengaruh terhadap kemampuan menahan urine",
+       verdict: "Myth",
+       explanation: "Otot dasar panggul membantu mengontrol pengeluaran urine. Latihan otot dasar panggul atau senam Kegel dapat membantu memperbaiki kontrol berkemih pada kondisi tertentu.",
+       reference: "NIDDK - The Urinary Tract & How It Works",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-28",
+       title: "Myth/Fact",
+       category: "Bladder Health",
+       statement: "Sering terbangun pada malam hari untuk buang air kecil dapat menjadi tanda gangguan kesehatan",
+       verdict: "Fact",
+       explanation: "Kondisi ini disebut nokturia. Penyebabnya beragam, mulai dari kebiasaan minum sebelum tidur hingga gangguan kandung kemih, diabetes, atau masalah kesehatan lainnya.",
+       reference: "NIDDK - Bladder Control Problems",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-29",
+       title: "Myth/Fact",
+       category: "Bladder Health",
+       statement: "Kandung kemih yang terasa belum kosong setelah BAK perlu diperhatikan",
+       verdict: "Fact",
+       explanation: "Sensasi tersebut dapat menandakan pengosongan kandung kemih yang tidak sempurna. Jika sering terjadi, kondisi ini perlu diperiksa karena dapat berkaitan dengan retensi urine.",
+       reference: "NIDDK - Urinary Retention",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-30",
+       title: "Myth/Fact",
+       category: "Bladder Health",
+       statement: "Infeksi kandung kemih hanya disebabkan oleh kebiasaan kurang minum",
+       verdict: "Myth",
+       explanation: "Infeksi kandung kemih umumnya disebabkan oleh bakteri yang masuk dan berkembang biak di kandung kemih. Kurang minum dapat menjadi salah satu faktor yang berkontribusi, tetapi bukan satu-satunya penyebab.",
+       reference: "CDC - Urinary Tract Infection Basics",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-31",
+       title: "Myth/Fact",
+       category: "Urinary Problems",
+       statement: "Infeksi saluran kemih lebih sering dialami perempuan dibandingkan laki-laki",
+       verdict: "Fact",
+       explanation: "Perempuan memiliki uretra yang lebih pendek dibandingkan laki-laki. Hal ini membuat bakteri lebih mudah mencapai kandung kemih. Infeksi saluran kemih memang lebih sering terjadi pada perempuan.",
+       reference: "MedlinePlus - Urinary Tract Infections",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-32",
+       title: "Myth/Fact",
+       category: "Urinary Problems",
+       statement: "Infeksi saluran kemih hanya dapat menyerang kandung kemih",
+       verdict: "Myth",
+       explanation: "Infeksi dapat terjadi pada berbagai bagian saluran kemih, termasuk uretra, kandung kemih, dan ginjal.",
+       reference: "MedlinePlus - Urinary Tract Infections",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-33",
+       title: "Myth/Fact",
+       category: "Urinary Problems",
+       statement: "Infeksi kandung kemih yang tidak ditangani dapat menyebar ke ginjal",
+       verdict: "Fact",
+       explanation: "Bakteri penyebab infeksi dapat naik dari kandung kemih menuju ginjal dan menyebabkan infeksi ginjal atau pielonefritis.",
+       reference: "NIDDK - Bladder Infection (UTI) in Adults",
+       dateUpdated: "2026-11-25"
+      },
+      {  
+       id: "mf-34",
+       title: "Myth/Fact",
+       category: "Urinary Problems",
+       statement: "Demam dan nyeri pinggang yang disertai keluhan BAK dapat menjadi tanda infeksi ginjal",
+       verdict: "Fact",
+       explanation: "Infeksi ginjal dapat menimbulkan demam, menggigil, nyeri pada bagian samping atau belakang tubuh, mual, serta keluhan saat BAK. Kondisi ini membutuhkan pemeriksaan medis segera.",
+       reference: "NHS - Kidney Infection",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-35",
+       title: "Myth/Fact",
+       category: "Urinary Problems",
+       statement: "Batu ginjal selalu menimbulkan rasa sakit sejak awal terbentuk",
+       verdict: "Myth",
+       explanation: "Batu ginjal berukuran kecil dapat tidak menimbulkan gejala. Rasa sakit biasanya muncul ketika batu bergerak atau menyumbat aliran urine.",
+       reference: "NIDDK - Kidney Stones",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-36",
+       title: "Myth/Fact",
+       category: "Urinary Problems",
+       statement: "Nyeri hebat pada pinggang hingga menjalar ke perut bawah atau selangkangan dapat menjadi tanda batu saluran kemih",
+       verdict: "Fact",
+       explanation: "Nyeri tersebut dapat terjadi ketika batu bergerak melalui saluran kemih. Keluhan bisa disertai mual, muntah, atau darah dalam urine.",
+       reference: "NIDDK - Symptoms & Causes of Kidney Stones",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-37",
+       title: "Myth/Fact",
+       category: "Urinary Problems",
+       statement: "Tidak bisa buang air kecil meskipun kandung kemih terasa penuh merupakan kondisi darurat",
+       verdict: "Fact",
+       explanation: "Kondisi ini disebut retensi urine akut. Jika tidak segera ditangani, penumpukan urine dapat menyebabkan nyeri dan berisiko menimbulkan komplikasi serius.",
+       reference: "NIDDK - Urinary Retention",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-38",
+       title: "Myth/Fact",
+       category: "Urinary Problems",
+       statement: "Aliran urine yang lemah pada laki-laki selalu disebabkan oleh pembesaran prostat",
+       verdict: "Myth",
+       explanation: "Pembesaran prostat memang dapat menghambat aliran urine, tetapi penyebab lainnya juga mungkin terjadi, seperti penyempitan uretra atau gangguan fungsi kandung kemih.",
+       reference: "NIDDK - Prostate Problems",
+       dateUpdated: "2026-11-25"
+      },
+      { 
+       id: "mf-39",
+       title: "Myth/Fact",
+       category: "Urinary Problems",
+       statement: "Darah dalam urine tidak perlu diperiksakan jika tidak disertai rasa sakit",
+       verdict: "Myth",
+       explanation: "Darah dalam urine atau hematuria dapat terjadi tanpa rasa sakit. Kondisi ini tetap perlu diperiksa karena dapat berkaitan dengan infeksi, batu saluran kemih, atau penyakit lainnya.",
+       reference: "NIDDK - Hematuria (Blood in the Urine)",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-40",
+       title: "Myth/Fact",
+       category: "Urinary Problems",
+       statement: "Infeksi saluran kemih dapat diobati dengan antibiotik yang dibeli sendiri tanpa pemeriksaan",
+       verdict: "Myth",
+       explanation: "Penggunaan antibiotik harus sesuai indikasi dan resep tenaga kesehatan. Penggunaan yang tidak tepat dapat menyebabkan resistansi antibiotik sehingga pengobatan infeksi menjadi lebih sulit.",
+       reference: "CDC - Healthy Habits: Antibiotic Do's and Don'ts",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-41",
+       title: "Myth/Fact",
+       category: "Daily Habits",
+       statement: "Semua orang wajib minum tepat 8 gelas air setiap hari",
+       verdict: "Myth",
+       explanation: "Kebutuhan cairan setiap orang berbeda, tergantung aktivitas, cuaca, usia, dan kondisi kesehatan. Tidak ada satu jumlah yang cocok untuk semua orang.",
+       reference: "NIDDK - Treatment for Bladder Control Problems",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-42",
+       title: "Myth/Fact",
+       category: "Daily Habits",
+       statement: "Minum air yang cukup membantu menjaga kesehatan ginjal dan saluran kemih",
+       verdict: "Fact",
+       explanation: "Cairan yang cukup membantu tubuh menghasilkan urine dan membuang zat sisa metabolisme. Namun, orang dengan kondisi tertentu seperti gagal ginjal atau gagal jantung mungkin perlu membatasi cairan sesuai anjuran dokter.",
+       reference: "NIDDK - Eating, Diet, & Nutrition for Bladder Infection",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-43",
+       title: "Myth/Fact",
+       category: "Daily Habits",
+       statement: "Membersihkan area genital dari arah belakang ke depan merupakan kebiasaan yang dianjurkan bagi perempuan",
+       verdict: "Myth",
+       explanation: "Membersihkan dari arah depan ke belakang lebih dianjurkan untuk mengurangi perpindahan bakteri dari area anus menuju lubang uretra.",
+       reference: "CDC - Urinary Tract Infection Basics",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-44",
+       title: "Myth/Fact",
+       category: "Daily Habits",
+       statement: "Buang air kecil setelah berhubungan seksual dapat membantu mengurangi risiko infeksi saluran kemih",
+       verdict: "Fact",
+       explanation: "Buang air kecil setelah berhubungan seksual dapat membantu mengeluarkan sebagian bakteri yang mungkin masuk ke uretra. Namun, kebiasaan ini tidak menjamin seseorang bebas dari infeksi.",
+       reference: "CDC - Urinary Tract Infection Basics",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-45",
+       title: "Myth/Fact",
+       category: "Daily Habits",
+       statement: "Mengurangi konsumsi garam dapat membantu menurunkan risiko gangguan ginjal tertentu",
+       verdict: "Fact",
+       explanation: "Konsumsi garam berlebihan dapat meningkatkan tekanan darah. Jika berlangsung lama, tekanan darah tinggi dapat merusak ginjal. Pengaturan asupan garam juga dapat membantu mencegah batu ginjal pada sebagian orang.",
+       reference: "NIDDK - High Blood Pressure & Kidney Disease; NIDDK - Kidney Stones",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-46",
+       title: "Myth/Fact",
+       category: "Daily Habits",
+       statement: "Jus cranberry dapat menyembuhkan infeksi saluran kemih yang sedang terjadi",
+       verdict: "Myth",
+       explanation: "Cranberry pernah diteliti untuk membantu mencegah infeksi saluran kemih berulang pada kelompok tertentu, tetapi bukan pengobatan untuk infeksi yang sedang terjadi. Infeksi tetap membutuhkan evaluasi medis.",
+       reference: "NIDDK - Eating, Diet, & Nutrition for Bladder Infection",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-47",
+       title: "Myth/Fact",
+       category: "Daily Habits",
+       statement: "Olahraga secara teratur hanya bermanfaat bagi kesehatan jantung, bukan ginjal",
+       verdict: "Myth",
+       explanation: "Aktivitas fisik membantu menjaga berat badan, tekanan darah, dan kadar gula darah. Ketiganya berperan dalam menjaga kesehatan ginjal.",
+       reference: "NIDDK - Chronic Kidney Disease",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-48",
+       title: "Myth/Fact",
+       category: "Daily Habits",
+       statement: "Menggunakan sabun atau produk pembersih berpewangi pada area genital secara berlebihan dapat menyebabkan iritasi",
+       verdict: "Fact",
+       explanation: "Produk dengan pewangi atau bahan tertentu dapat mengiritasi area genital. Penggunaan produk pembersih yang tidak diperlukan sebaiknya dihindari.",
+       reference: "CDC - Urinary Tract Infection Basics",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-49",
+       title: "Myth/Fact",
+       category: "Daily Habits",
+       statement: "Merokok dapat meningkatkan risiko kanker kandung kemih",
+       verdict: "Fact",
+       explanation: "Zat kimia berbahaya dalam rokok masuk ke aliran darah, disaring oleh ginjal, dan sebagian dikeluarkan melalui urine. Paparan zat tersebut dapat merusak sel-sel yang melapisi kandung kemih.",
+       reference: "National Cancer Institute - Bladder Cancer Causes and Risk Factors",
+       dateUpdated: "2026-11-25"
+      },
+      {
+       id: "mf-50",
+       title: "Myth/Fact",
+       category: "Daily Habits",
+       statement: "Mengonsumsi obat pereda nyeri secara berlebihan dapat membahayakan ginjal",
+       verdict: "Fact",
+       explanation: "Beberapa obat pereda nyeri, terutama golongan NSAID seperti ibuprofen dan naproxen, dapat mengganggu aliran darah ke ginjal. Penggunaan berlebihan atau tanpa memperhatikan kondisi kesehatan dapat meningkatkan risiko gangguan ginjal.",
+       reference: "NIDDK - Managing Chronic Kidney Disease",
+       dateUpdated: "2026-11-25"
+      }
+    ];
+
+    // 4. DATA MINI QUIZ
+    const QUIZ_DATA = [
+      {
+        id: "qz-01",
+        category: "Urine & BAK",
+        difficulty: "Mudah",
+        question: "Apa fungsi utama urine bagi tubuh?",
+        options: [
+          "Membantu mencerna makanan",
+          "Mengeluarkan zat sisa dan kelebihan cairan dari tubuh",
+          "Menghasilkan energi untuk tubuh",
+          "Mengatur suhu tubuh secara langsung"
+        ],
+        correctAnswer: 1,
+        explanation: "Urine merupakan cairan sisa yang dihasilkan oleh ginjal untuk membuang zat-zat yang tidak diperlukan tubuh serta kelebihan air. Urine kemudian dikeluarkan melalui saluran kemih",
+        reference: "NIDDK - The Urinaru Tract & How It Works"
+      },
+      {
+        id: "qz-02",
+        category: "Urine & BAK",
+        difficulty: "Mudah",
+        question: "Organ apa yang bertugas menghasilkan urine?",
+        options: [
+          "Hati",
+          "Paru-paru",
+          "Ginjal",
+          "Lambung"
+        ],
+        correctAnswer: 2,
+        explanation: "Ginjal bertugas menyaring darah, membuang zat sisa, serta mengatur keseimbangan cairan dan mineral dalam tubuh. Proses tersebut menghasilkan urine.",
+        reference: "NIDDK - Your Kidneys & How They Work"
+      },
+      {
+        id: "qz-03",
+        category: "Urine & BAK",
+        difficulty: "Mudah",
+        question: "Warna urine yang umumnya menunjukkan tubuh mendapatkan cukup cairan adalah ...",
+        options: [
+          "Kuning pucat",
+          "Merah pekat",
+          "Cokelat kehitaman",
+          "Putih seperti susu"
+        ],
+        correctAnswer: 0,
+        explanation: "Urine berwarna kuning pucat umumnya menandakan tubuh mendapatkan cairan yang cukup. Namun, warna urine juga dapat dipengaruhi makanan, vitamin, dan obat-obatan.",
+        reference: "MedlinePlus - Urine, Abnormal Color"
+      },
+      {
+        id: "qz-04",
+        category: "Urine & BAK",
+        difficulty: "Sedang",
+        question: "Urutan perjalanan urine yang benar sejak diproduksi hingga keluar dari tubuh adalah ...",
+        options: [
+          "Ginjal → kandung kemih → ureter → uretra",
+          "Kandung kemih → ginjal → uretra → ureter",
+          "Ginjal → ureter → kandung kemih → uretra",
+          "Ureter → ginjal → kandung kemih → uretra"
+        ],
+        correctAnswer: 2,
+        explanation: "Urine diproduksi oleh ginjal, kemudian mengalir melalui ureter menuju kandung kemih untuk disimpan sementara. Saat buang air kecil, urine keluar melalui uretra.",
+        reference: "NIDDK - The Urinary Tract & How It Works"
+      },
+      {
+        id: "qz-05",
+        category: "Urine & BAK",
+        difficulty: "Sedang",
+        question: "Mengapa seseorang cenderung lebih sering buang air kecil setelah minum banyak air?",
+        options: [
+          "Kandung kemih menghasilkan lebih banyak darah",
+          "Ginjal mengeluarkan lebih banyak kelebihan cairan sebagai urine",
+          "Uretra menyerap air dari dalam tubuh",
+          "Kandung kemih berhenti menyimpan urine"
+        ],
+        correctAnswer: 1,
+        explanation: "Ketika seseorang minum lebih banyak air, ginjal akan menyesuaikan jumlah cairan yang dikeluarkan melalui urine. Akibatnya, kandung kemih lebih cepat terisi dan keinginan untuk buang air kecil meningkat.",
+        reference: "NIDDK - The Urinary Tract & How It Works"
+      },
+      {
+        id: "qz-06",
+        category: "Urine & BAK",
+        difficulty: "Sedang",
+        question: "Seseorang mengalami perubahan warna urine menjadi kuning lebih pekat setelah beraktivitas di bawah terik matahari dan banyak berkeringat. Apa penyebab yang paling mungkin?",
+        options: [
+          "Tubuh kehilangan cairan melalui keringat",
+          "Ginjal berhenti menghasilkan urine",
+          "Kandung kemih mengalami infeksi",
+          "Tubuh menghasilkan terlalu banyak darah"
+        ],
+        correctAnswer: 0,
+        explanation: "Ketika banyak berkeringat, tubuh kehilangan cairan. Ginjal akan membantu mempertahankan cairan dengan menghasilkan urine yang lebih sedikit dan lebih pekat. Kondisi ini dapat menyebabkan urine tampak lebih kuning.",
+        reference: "MedlinePlus - Dehydration"
+      },
+      {
+        id: "qz-07",
+        category: "Urine & BAK",
+        difficulty: "Sulit",
+        question: "Seorang perempuan memperhatikan urine-nya berwarna merah muda setelah mengonsumsi buah bit. Ia tidak mengalami nyeri atau keluhan lainnya. Apa tindakan yang paling tepat?",
+        options: [
+          "Langsung mengonsumsi antibiotik",
+          "Menganggapnya pasti sebagai tanda penyakit ginjal",
+          "Memperhatikan apakah perubahan warna menghilang setelah makanan tersebut tidak dikonsumsi, dan memeriksakan diri jika menetap atau berulang",
+          "Mengurangi minum air putih"
+        ],
+        correctAnswer: 2,
+        explanation: "Beberapa makanan, termasuk buah bit, dapat mengubah warna urine menjadi kemerahan. Namun, urine berwarna merah juga bisa menandakan adanya darah. Jika perubahan warna tidak membaik, berulang, atau tidak jelas penyebabnya, pemeriksaan medis diperlukan.",
+        reference: "MedlinePlus - Urine, Abnormal Color"
+      },
+      {
+        id: "qz-08",
+        category: "Urine & BAK",
+        difficulty: "Sulit",
+        question: "Seseorang merasa ingin buang air kecil terus-menerus, tetapi setiap kali ke toilet hanya sedikit urine yang keluar. Kondisi ini paling tepat menunjukkan ...",
+        options: [
+          "Selalu merupakan tanda bahwa tubuh kelebihan cairan",
+          "Kemungkinan terdapat gangguan pada saluran kemih atau proses pengosongan kandung kemih",
+          "Ginjal tidak lagi memproduksi urine",
+          "Kondisi normal yang tidak perlu diperhatikan"
+        ],
+        correctAnswer: 1,
+        explanation: "Keinginan buang air kecil yang sering dengan volume sedikit dapat terjadi pada infeksi saluran kemih, kandung kemih yang terlalu aktif, atau gangguan pengosongan kandung kemih. Jika disertai nyeri, demam, atau sulit mengeluarkan urine, perlu dilakukan pemeriksaan.",
+        reference: "NIDDK - Urodynamic Testing"
+      },
+      {
+        id: "qz-09",
+        category: "Urine & BAK",
+        difficulty: "Sulit",
+        question: "Mengapa urine yang tampak berbusa terus-menerus perlu diperhatikan?",
+        options: [
+          "Selalu menunjukkan bahwa seseorang minum terlalu banyak air",
+          "Bisa menjadi tanda adanya protein dalam urine",
+          "Menunjukkan bahwa kandung kemih terlalu penuh",
+          "Menandakan tubuh kekurangan vitamin C"
+        ],
+        correctAnswer: 1,
+        explanation: "Urine yang berbusa secara berulang dapat menjadi salah satu tanda adanya protein dalam urine (proteinuria). Kondisi ini dapat berkaitan dengan gangguan penyaringan ginjal. Meski begitu, busa sesekali juga dapat terjadi karena aliran urine yang deras. Pemeriksaan urine diperlukan untuk memastikannya.",
+        reference: "MedlinePlus - Protein in Urine"
+      },
+      {
+        id: "qz-10",
+        category: "Urine & BAK",
+        difficulty: "Sulit",
+        question: "Seorang laki-laki berusia 65 tahun mengeluhkan aliran urine semakin lemah, sulit memulai buang air kecil, dan sering merasa kandung kemih belum kosong. Kondisi yang mungkin menjadi penyebabnya adalah ...",
+        options: [
+          "Pembesaran kelenjar prostat",
+          "Radang tenggorokan",
+          "Gangguan paru-paru",
+          "Infeksi telinga"
+        ],
+        correctAnswer: 0,
+        explanation: "Pembesaran prostat jinak (BPH) sering terjadi pada laki-laki yang semakin bertambah usia. Prostat yang membesar dapat menekan saluran keluarnya urine sehingga aliran menjadi lemah, sulit memulai BAK, dan kandung kemih tidak kosong sepenuhnya.",
+        reference: "MedlinePlus - Enlarged Prostate (BPH)"
+      },
+      {
+        id: "qz-11",
+        category: "Kidney Health",
+        difficulty: "Mudah",
+        question: "Berapa jumlah ginjal yang umumnya dimiliki manusia?",
+        options: [
+          "Satu",
+          "Dua",
+          "Tiga",
+          "Empat"
+        ],
+        correctAnswer: 1,
+        explanation: "Manusia umumnya memiliki dua ginjal yang terletak di bagian belakang rongga perut, masing-masing di sisi kanan dan kiri tulang belakang.",
+        reference: "NIDDK - Your Kidneys & How They Work"
+      },
+      {
+        id: "qz-12",
+        category: "Kidney Health",
+        difficulty: "Mudah",
+        question: "Apa salah satu fungsi penting ginjal selain menghasilkan urine?",
+        options: [
+          "Mengatur keseimbangan cairan dan mineral tubuh",
+          "Menghasilkan oksigen untuk darah",
+          "Mencerna protein dari makanan",
+          "Mengatur gerakan otot secara langsung"
+        ],
+        correctAnswer: 0,
+        explanation: "Ginjal membantu menjaga keseimbangan air, garam, dan mineral seperti natrium dan kalium agar organ tubuh dapat bekerja dengan baik.",
+        reference: "NIDDK - Your Kidneys & How They Work"
+      },
+      {
+        id: "qz-13",
+        category: "Kidney Health",
+        difficulty: "Mudah",
+        question: "Manakah kebiasaan yang dapat membantu menjaga kesehatan ginjal?",
+        options: [
+          "Merokok setiap hari",
+          "Mengonsumsi makanan sangat asin secara berlebihan",
+          "Menjaga tekanan darah tetap terkontrol",
+          "Mengonsumsi obat tanpa aturan"
+        ],
+        correctAnswer: 2,
+        explanation: "Tekanan darah yang terlalu tinggi dapat merusak pembuluh darah kecil di ginjal. Menjaga tekanan darah tetap terkontrol merupakan salah satu cara penting untuk melindungi fungsi ginjal.",
+        reference: "NIDDK - Managing Chronic Kidney Disease"
+      },
+      {
+        id: "qz-14",
+        category: "Kidney Health",
+        difficulty: "Sedang",
+        question: "Mengapa penderita diabetes memiliki risiko lebih tinggi mengalami gangguan ginjal?",
+        options: [
+          "Gula darah tinggi dalam waktu lama dapat merusak pembuluh darah kecil di ginjal",
+          "Ginjal berhenti bekerja setiap kali gula darah meningkat",
+          "Diabetes menyebabkan ginjal berubah menjadi lebih besar secara normal",
+          "Gula darah tinggi membuat kandung kemih menghasilkan urine"
+        ],
+        correctAnswer: 0,
+        explanation: "Kadar gula darah yang tinggi dan tidak terkontrol dalam jangka panjang dapat merusak pembuluh darah kecil yang berfungsi menyaring darah di ginjal. Kerusakan ini dapat menyebabkan penyakit ginjal akibat diabetes.",
+        reference: "NIDDK - Diabetic Kidney Disease"
+      },
+      {
+        id: "qz-15",
+        category: "Kidney Health",
+        difficulty: "Sedang",
+        question: "Seseorang sering mengonsumsi makanan tinggi garam seperti mi instan, keripik, dan makanan olahan. Mengapa kebiasaan tersebut perlu dibatasi?",
+        options: [
+          "Garam membuat ginjal berhenti menghasilkan urine",
+          "Konsumsi garam berlebihan dapat meningkatkan tekanan darah dan membebani kesehatan ginjal",
+          "Garam menyebabkan ginjal kehilangan seluruh mineralnya",
+          "Garam selalu menyebabkan batu ginjal dalam waktu singkat"
+        ],
+        correctAnswer: 1,
+        explanation: "Terlalu banyak mengonsumsi garam dapat meningkatkan tekanan darah. Jika berlangsung lama, tekanan darah tinggi dapat merusak pembuluh darah ginjal dan meningkatkan risiko penyakit ginjal.",
+        reference: "NIDDK - Managing Chronic Kidney Disease"
+      },
+      {
+        id: "qz-16",
+        category: "Kidney Health",
+        difficulty: "Sedang",
+        question: "Apa yang dimaksud dengan batu ginjal?",
+        options: [
+          "Penumpukan bakteri di dalam kandung kemih",
+          "Endapan mineral dan garam yang mengeras di dalam ginjal",
+          "Pembengkakan jaringan di sekitar uretra",
+          "Penumpukan udara di dalam saluran kemih"
+        ],
+        correctAnswer: 1,
+        explanation: "Batu ginjal terbentuk ketika mineral dan garam dalam urine mengendap dan membentuk kristal yang kemudian mengeras. Ukurannya bervariasi, mulai dari sangat kecil hingga cukup besar untuk menghambat aliran urine.",
+        reference: "NIDDK - Kidney Stones"
+      },
+      {
+        id: "qz-17",
+        category: "Kidney Health",
+        difficulty: "Sulit",
+        question: "Seseorang memiliki tekanan darah tinggi, tetapi merasa sehat dan tidak mengalami keluhan apa pun. Mengapa ia tetap perlu memeriksakan fungsi ginjal secara berkala?",
+        options: [
+          "Gangguan ginjal selalu menimbulkan nyeri hebat sejak awal",
+          "Penyakit ginjal dapat berkembang tanpa gejala yang jelas pada tahap awal",
+          "Tekanan darah tinggi tidak berhubungan dengan ginjal",
+          "Pemeriksaan ginjal hanya diperlukan jika urine berubah warna"
+        ],
+        correctAnswer: 1,
+        explanation: "Penyakit ginjal kronis sering tidak menimbulkan gejala pada tahap awal. Karena itu, orang dengan faktor risiko seperti hipertensi dan diabetes perlu melakukan pemeriksaan sesuai anjuran tenaga kesehatan, termasuk pemeriksaan darah dan urine.",
+        reference: "NIDDK - Chronic Kidney Disease"
+      },
+      {
+        id: "qz-18",
+        category: "Kidney Health",
+        difficulty: "Sulit",
+        question: "Seorang pasien dengan diabetes menemukan hasil pemeriksaan urine menunjukkan adanya albumin. Apa arti temuan tersebut?",
+        options: [
+          "Ginjal sedang mengeluarkan kelebihan vitamin",
+          "Bisa menjadi tanda awal kerusakan penyaring ginjal",
+          "Menandakan kandung kemih mengalami pembesaran",
+          "Membuktikan bahwa pasien mengalami infeksi kandung kemih"
+        ],
+        correctAnswer: 1,
+        explanation: "Albumin merupakan salah satu jenis protein dalam darah. Normalnya, protein ini hanya sedikit atau hampir tidak ditemukan dalam urine. Peningkatan albumin dalam urine dapat menjadi tanda kerusakan penyaring ginjal. Pemeriksaan rasio albumin-kreatinin urine (UACR) dapat membantu menilai kondisi tersebut.",
+        reference: "NIDDK - Albuminuria: Albumin in the Urine"
+      },
+      {
+        id: "qz-19",
+        category: "Kidney Health",
+        difficulty: "Sulit",
+        question: "Seseorang mengalami nyeri hebat secara tiba-tiba pada bagian pinggang yang menjalar ke perut bawah. Ia juga merasa mual dan urine terkadang bercampur darah. Gangguan yang paling mungkin dialami adalah ...",
+        options: [
+          "Batu ginjal",
+          "Maag",
+          "Radang tenggorokan",
+          "Infeksi kulit"
+        ],
+        correctAnswer: 0,
+        explanation: "Batu yang bergerak dari ginjal menuju saluran kemih dapat menimbulkan nyeri hebat yang disebut kolik ginjal. Nyeri dapat menjalar ke perut bawah atau selangkangan dan terkadang disertai mual, muntah, serta darah dalam urine.",
+        reference: "NIDDK - Kidney Stones"
+      },
+      {
+        id: "qz-20",
+        category: "Kidney Health",
+        difficulty: "Sulit",
+        question: "Seorang pasien mengalami demam tinggi, menggigil, nyeri pinggang, dan sakit saat buang air kecil. Mengapa kondisi ini perlu segera diperiksa?",
+        options: [
+          "Karena kemungkinan infeksi sudah mencapai ginjal",
+          "Karena tubuh sedang menyesuaikan warna urine",
+          "Karena kandung kemih sedang mengembang secara normal",
+          "Karena kondisi tersebut selalu disebabkan oleh kurang tidur"
+        ],
+        correctAnswer: 0,
+        explanation: "Kombinasi demam, menggigil, nyeri pinggang, dan nyeri saat BAK dapat menunjukkan infeksi ginjal (pielonefritis). Infeksi ini dapat menimbulkan komplikasi serius jika tidak segera ditangani. Pasien perlu mendapatkan pemeriksaan medis sesegera mungkin.",
+        reference: "NIDDK - Kidney Infection (Pyelonephritis)"
+      },
+      {
+        id: "qz-21",
+        category: "Bladder Health",
+        difficulty: "Mudah",
+        question: "Apa fungsi utama kandung kemih?",
+        options: [
+          "Menyaring darah",
+          "Menyimpan urine sementara sebelum dikeluarkan",
+          "Menghasilkan hormon pencernaan",
+          "Menghasilkan sel darah merah"
+        ],
+        correctAnswer: 1,
+        explanation: "Kandung kemih merupakan organ berotot yang berfungsi menampung urine dari ginjal. Ketika kandung kemih sudah cukup terisi, tubuh akan memberikan sinyal berupa keinginan untuk buang air kecil.",
+        reference: "NIDDK - The Urinary Tract & How It Works"
+      },
+      {
+        id: "qz-22",
+        category: "Bladder Health",
+        difficulty: "Mudah",
+        question: "Di manakah letak kandung kemih?",
+        options: [
+          "Di dalam rongga dada",
+          "Di bagian panggul atau perut bawah",
+          "Di belakang paru-paru",
+          "Di bagian atas kepala"
+        ],
+        correctAnswer: 1,
+        explanation: "Kandung kemih terletak di bagian panggul, tepatnya di belakang tulang kemaluan. Organ ini berada di bagian bawah rongga perut.",
+        reference: "NIDDK - The Urinary Tract & How It Works"
+      },
+      {
+        id: "qz-23",
+        category: "Bladder Health",
+        difficulty: "Mudah",
+        question: "Apa yang terjadi ketika kandung kemih terisi urine?",
+        options: [
+          "Tubuh dapat merasakan keinginan untuk buang air kecil",
+          "Ginjal berhenti menyaring darah secara permanen",
+          "Urine langsung kembali ke dalam darah",
+          "Kandung kemih berubah menjadi organ pencernaan"
+        ],
+        correctAnswer: 0,
+        explanation: "Saat urine terkumpul, dinding kandung kemih meregang dan mengirimkan sinyal ke otak. Otak kemudian membantu mengatur kapan seseorang perlu mengosongkan kandung kemih.",
+        reference: "NIDDK - The Urinary Tract & How It Works"
+      },
+      {
+        id: "qz-24",
+        category: "Bladder Health",
+        difficulty: "Sedang",
+        question: "Apa yang dimaksud dengan inkontinensia urine?",
+        options: [
+          "Kondisi ketika seseorang tidak mampu mengontrol keluarnya urine",
+          "Kondisi ketika seseorang menghasilkan urine terlalu sedikit",
+          "Kondisi ketika ginjal menghasilkan terlalu banyak darah",
+          "Kondisi ketika kandung kemih tidak memiliki otot"
+        ],
+        correctAnswer: 0,
+        explanation: "Inkontinensia urine adalah kondisi ketika seseorang mengalami kebocoran urine tanpa dapat mengontrolnya. Kondisi ini dapat terjadi ketika otot atau saraf yang membantu mengontrol keluarnya urine mengalami gangguan.",
+        reference: "NIDDK - Bladder Control Problems"
+      },
+      {
+        id: "qz-25",
+        category: "Bladder Health",
+        difficulty: "Sedang",
+        question: "Mengapa seseorang dapat mengalami kebocoran urine ketika tertawa, batuk, atau bersin?",
+        options: [
+          "Karena tekanan pada perut meningkat dan menekan kandung kemih",
+          "Karena ginjal berhenti menghasilkan urine",
+          "Karena ureter mengalami penyumbatan",
+          "Karena urine berubah menjadi lebih encer"
+        ],
+        correctAnswer: 0,
+        explanation: "Batuk, bersin, dan tertawa dapat meningkatkan tekanan di dalam perut. Jika otot dasar panggul dan jaringan penyangga kandung kemih melemah, urine dapat keluar tanpa disengaja. Kondisi ini dikenal sebagai inkontinensia stres.",
+        reference: "NIDDK - Bladder Control Problems"
+      },
+      {
+        id: "qz-26",
+        category: "Bladder Health",
+        difficulty: "Sedang",
+        question: "Apa salah satu manfaat latihan otot dasar panggul atau senam Kegel?",
+        options: [
+          "Membantu memperkuat otot yang berperan dalam mengontrol keluarnya urine",
+          "Menghentikan produksi urine oleh ginjal",
+          "Menghilangkan seluruh bakteri dalam saluran kemih",
+          "Memperbesar kapasitas ginjal secara langsung"
+        ],
+        correctAnswer: 0,
+        explanation: "Senam Kegel bertujuan memperkuat otot dasar panggul yang membantu menopang organ panggul dan mengontrol keluarnya urine. Latihan ini dapat bermanfaat bagi laki-laki maupun perempuan.",
+        reference: "NIDDK - Bladder Control Problems"
+      },
+      {
+        id: "qz-27",
+        category: "Bladder Health",
+        difficulty: "Sulit",
+        question: "Seorang perempuan berusia 45 tahun sering tiba-tiba merasa sangat ingin buang air kecil. Keinginan tersebut sulit ditahan dan terkadang menyebabkan urine keluar sebelum ia sampai ke toilet. Kondisi ini paling sesuai dengan ...",
+        options: [
+          "Kandung kemih terlalu aktif (overactive bladder)",
+          "Batu ginjal tanpa gejala",
+          "Infeksi saluran pernapasan",
+          "Kekurangan sel darah merah"
+        ],
+        correctAnswer: 0,
+        explanation: "Overactive bladder merupakan kondisi ketika kandung kemih menimbulkan dorongan BAK yang mendadak dan sulit ditahan. Kondisi ini dapat disertai frekuensi BAK yang meningkat, termasuk pada malam hari, dan terkadang kebocoran urine.",
+        reference: "NIDDK - Bladder Control Problems"
+      },
+      {
+        id: "qz-28",
+        category: "Bladder Health",
+        difficulty: "Sulit",
+        question: "Seorang laki-laki sering mengalami infeksi saluran kemih berulang dan diketahui memiliki kesulitan mengosongkan kandung kemih. Mengapa urine yang tertinggal di kandung kemih perlu diperhatikan?",
+        options: [
+          "Urine yang tertinggal dapat mempermudah pertumbuhan bakteri dan meningkatkan risiko infeksi",
+          "Urine yang tertinggal selalu mengandung racun berbahaya",
+          "Urine yang tertinggal dapat berubah menjadi darah",
+          "Urine yang tertinggal akan meningkatkan produksi oksigen"
+        ],
+        correctAnswer: 0,
+        explanation: "Pengosongan kandung kemih yang tidak sempurna menyebabkan urine tertahan. Kondisi ini dapat meningkatkan risiko pertumbuhan bakteri dan infeksi saluran kemih. Gangguan tersebut juga dapat berkaitan dengan pembesaran prostat atau penyumbatan saluran kemih.",
+        reference: "NIDDK - Urinary Retention"
+      },
+      {
+        id: "qz-29",
+        category: "Bladder Health",
+        difficulty: "Sulit",
+        question: "Seseorang merasa kandung kemihnya penuh dan sangat ingin buang air kecil, tetapi sama sekali tidak bisa mengeluarkan urine meskipun sudah mencoba beberapa kali. Apa tindakan yang paling tepat?",
+        options: [
+          "Menunggu sampai keesokan harinya",
+          "Mengurangi konsumsi air selama beberapa hari",
+          "Segera mencari pertolongan medis karena kemungkinan mengalami retensi urine akut",
+          "Mengonsumsi obat pelancar urine tanpa resep"
+        ],
+        correctAnswer: 2,
+        explanation: "Ketidakmampuan mengeluarkan urine meskipun kandung kemih terasa penuh dapat menunjukkan retensi urine akut. Kondisi ini membutuhkan pertolongan medis segera karena urine yang tertahan dapat menyebabkan tekanan pada kandung kemih dan saluran kemih.",
+        reference: "NIDDK - Urinary Retention"
+      },
+      {
+        id: "qz-30",
+        category: "Bladder Health",
+        difficulty: "Sulit",
+        question: "Seseorang mengalami nyeri perut bagian bawah, sering BAK, dan beberapa kali menemukan darah dalam urine. Pemeriksaan menunjukkan adanya batu di dalam kandung kemih. Bagaimana batu tersebut dapat terbentuk?",
+        options: [
+          "Karena urine selalu mengandung terlalu banyak gula",
+          "Karena urine tertahan dan tidak keluar sepenuhnya sehingga mineral dapat mengendap dan mengeras",
+          "Karena kandung kemih menghasilkan terlalu banyak darah",
+          "Karena seseorang terlalu sering tidur"
+        ],
+        correctAnswer: 1,
+        explanation: "Batu kandung kemih dapat terbentuk ketika kandung kemih tidak mampu mengosongkan urine secara sempurna. Mineral dalam urine yang tertinggal dapat mengendap dan membentuk batu. Kondisi ini sering berkaitan dengan gangguan aliran urine, seperti pembesaran prostat.",
+        reference: "NHS - Bladder Stones"
+      },
+      {
+        id: "qz-31",
+        category: "Urinary Problems",
+        difficulty: "Mudah",
+        question: "Apa kepanjangan dari ISK?",
+        options: [
+          "Infeksi Saluran Kemih",
+          "Inflamasi Sistem Kesehatan",
+          "Infeksi Sistem Kerongkongan",
+          "Iritasi Saluran Keringat"
+        ],
+        correctAnswer: 0,
+        explanation: "ISK adalah singkatan dari Infeksi Saluran Kemih, yaitu infeksi yang dapat menyerang bagian saluran kemih, termasuk uretra, kandung kemih, dan ginjal.",
+        reference: "NHS - Urinary Tract Infections (UTIs)"
+      },
+      {
+        id: "qz-32",
+        category: "Urinary Problems",
+        difficulty: "Mudah",
+        question: "Apa penyebab paling umum dari infeksi saluran kemih?",
+        options: [
+          "Bakteri yang masuk dan berkembang biak di saluran kemih",
+          "Kekurangan vitamin C",
+          "Terlalu banyak mengonsumsi makanan pedas",
+          "Kurang tidur selama satu malam"
+        ],
+        correctAnswer: 0,
+        explanation: "Sebagian besar infeksi saluran kemih disebabkan oleh bakteri, terutama bakteri yang berasal dari saluran pencernaan seperti Escherichia coli (E. coli). Bakteri tersebut dapat masuk melalui uretra dan berkembang biak di saluran kemih.",
+        reference: "NIDDK - Bladder Infection (UTI) in Adults"
+      },
+      {
+        id: "qz-33",
+        category: "Urinary Problems",
+        difficulty: "Mudah",
+        question: "Manakah gejala yang paling umum ditemukan pada seseorang dengan infeksi saluran kemih?",
+        options: [
+          "Nyeri atau rasa terbakar saat buang air kecil",
+          "Nyeri pada telinga",
+          "Gangguan penglihatan",
+          "Batuk berdahak"
+        ],
+        correctAnswer: 0,
+        explanation: "Infeksi saluran kemih dapat menyebabkan rasa perih atau terbakar saat BAK, sering ingin BAK, dan rasa tidak nyaman pada perut bagian bawah.",
+        reference: "NHS - Urinary Tract Infections (UTIs)"
+      },
+      {
+        id: "qz-34",
+        category: "Urinary Problems",
+        difficulty: "Sedang",
+        question: "Mengapa perempuan lebih rentan mengalami infeksi saluran kemih dibandingkan laki-laki?",
+        options: [
+          "Perempuan memiliki ginjal yang lebih kecil",
+          "Saluran kencing perempuan lebih pendek sehingga bakteri lebih mudah mencapai kandung kemih",
+          "Perempuan tidak memiliki kandung kemih",
+          "Perempuan menghasilkan urine lebih banyak setiap hari"
+        ],
+        correctAnswer: 1,
+        explanation: "Perempuan memiliki uretra yang lebih pendek dibandingkan laki-laki. Selain itu, letak lubang uretra perempuan lebih dekat dengan anus sehingga bakteri dari saluran pencernaan lebih mudah mencapai saluran kemih.",
+        reference: "NIDDK - Bladder Infection (UTI) in Adults"
+      },
+      {
+        id: "qz-35",
+        category: "Urinary Problems",
+        difficulty: "Sedang",
+        question: "Seseorang mengalami nyeri saat BAK, sering buang air kecil, dan urine tampak keruh. Gangguan yang paling mungkin dialami adalah ...",
+        options: [
+          "Infeksi saluran kemih",
+          "Gangguan penglihatan",
+          "Radang paru-paru",
+          "Gangguan lambung"
+        ],
+        correctAnswer: 0,
+        explanation: "Nyeri saat BAK, frekuensi BAK meningkat, dan urine keruh merupakan beberapa gejala yang dapat ditemukan pada infeksi saluran kemih. Pemeriksaan urine dapat membantu memastikan diagnosis.",
+        reference: "NIDDK - Bladder Infection (UTI) in Adults"
+      },
+      {
+        id: "qz-36",
+        category: "Urinary Problems",
+        difficulty: "Sedang",
+        question: "Apa perbedaan utama antara infeksi kandung kemih dan infeksi ginjal?",
+        options: [
+          "Infeksi kandung kemih selalu menyebabkan demam tinggi, sedangkan infeksi ginjal tidak",
+          "Infeksi ginjal dapat menimbulkan demam, menggigil, dan nyeri pinggang, sedangkan infeksi kandung kemih umumnya menyebabkan keluhan saat BAK dan nyeri perut bawah",
+          "Infeksi kandung kemih hanya terjadi pada laki-laki",
+          "Infeksi ginjal tidak berhubungan dengan saluran kemih"
+        ],
+        correctAnswer: 1,
+        explanation: "Infeksi kandung kemih biasanya menimbulkan rasa terbakar saat BAK, sering BAK, dan nyeri perut bawah. Jika infeksi mencapai ginjal, gejala dapat menjadi lebih berat, seperti demam, menggigil, mual, dan nyeri pada pinggang atau punggung bagian samping.",
+        reference: "NIDDK - Kidney Infection (Pyelonephritis)"
+      },
+      {
+        id: "qz-37",
+        category: "Urinary Problems",
+        difficulty: "Sulit",
+        question: "Seorang perempuan mengalami nyeri saat BAK dan sering ingin buang air kecil. Ia kemudian membeli antibiotik milik anggota keluarganya tanpa berkonsultasi dengan tenaga kesehatan. Mengapa tindakan tersebut tidak dianjurkan?",
+        options: [
+          "Semua antibiotik hanya boleh digunakan oleh laki-laki",
+          "Jenis dan penggunaan antibiotik harus disesuaikan dengan kondisi pasien agar pengobatan tepat dan risiko resistensi antibiotik dapat dikurangi",
+          "Antibiotik selalu menyebabkan kerusakan ginjal",
+          "Antibiotik tidak pernah digunakan untuk mengatasi infeksi saluran kemih"
+        ],
+        correctAnswer: 1,
+        explanation: "Antibiotik harus digunakan sesuai indikasi dan petunjuk tenaga kesehatan. Penggunaan antibiotik yang tidak tepat dapat menyebabkan efek samping, pengobatan tidak efektif, serta meningkatkan risiko resistensi antibiotik, yaitu kondisi ketika bakteri menjadi lebih sulit dibunuh oleh antibiotik.",
+        reference: "CDC - Healthy Habits: Antibiotic Do's and Don'ts"
+      },
+      {
+        id: "qz-38",
+        category: "Urinary Problems",
+        difficulty: "Sulit",
+        question: "Seorang laki-laki mengalami demam tinggi, menggigil, nyeri pinggang, dan mual setelah beberapa hari mengalami keluhan nyeri saat BAK. Apa kemungkinan yang perlu diwaspadai?",
+        options: [
+          "Infeksi saluran kemih telah menyebar ke ginjal",
+          "Gangguan pada sistem pencernaan akibat makanan pedas",
+          "Kandung kemih sedang beradaptasi dengan jumlah urine",
+          "Kondisi normal setelah terlalu banyak minum air"
+        ],
+        correctAnswer: 0,
+        explanation: "Infeksi yang awalnya terjadi pada kandung kemih dapat naik melalui saluran kemih hingga mencapai ginjal. Kondisi ini disebut pielonefritis dan dapat menimbulkan komplikasi serius jika tidak ditangani. Pasien perlu segera mendapatkan pemeriksaan medis.",
+        reference: "NIDDK - Kidney Infection (Pyelonephritis)"
+      },
+      {
+        id: "qz-39",
+        category: "Urinary Problems",
+        difficulty: "Sulit",
+        question: "Seorang perempuan berusia 30 tahun mengalami infeksi saluran kemih sebanyak tiga kali dalam satu tahun. Apa tindakan yang paling tepat?",
+        options: [
+          "Membiarkan kondisi tersebut karena ISK selalu sembuh sendiri",
+          "Mengonsumsi antibiotik setiap kali merasa tidak nyaman tanpa pemeriksaan",
+          "Berkonsultasi dengan tenaga kesehatan untuk mencari penyebab infeksi berulang dan menentukan penanganan yang sesuai",
+          "Menghentikan konsumsi air putih agar frekuensi BAK berkurang"
+        ],
+        correctAnswer: 2,
+        explanation: "Infeksi saluran kemih berulang perlu dievaluasi untuk mengetahui kemungkinan faktor penyebabnya. ISK umumnya disebut berulang jika terjadi setidaknya dua kali dalam enam bulan atau tiga kali dalam satu tahun. Pemeriksaan lebih lanjut dapat membantu menentukan langkah pencegahan dan pengobatan yang tepat.",
+        reference: "NHS - Urinary Tract Infections (UTIs)"
+      },
+      {
+        id: "qz-40",
+        category: "Urinary Problems",
+        difficulty: "Sulit",
+        question: "Seseorang menemukan darah dalam urine, tetapi tidak merasakan nyeri atau keluhan lainnya. Apa tindakan yang paling tepat?",
+        options: [
+          "Menganggapnya normal karena tidak disertai rasa sakit",
+          "Mengonsumsi obat pereda nyeri dan mengabaikannya",
+          "Segera memeriksakan diri karena darah dalam urine tetap perlu dievaluasi meskipun tidak terasa sakit",
+          "Mengurangi konsumsi buah dan sayuran"
+        ],
+        correctAnswer: 2,
+        explanation: "Darah dalam urine disebut hematuria. Kondisi ini dapat disebabkan oleh infeksi, batu saluran kemih, gangguan ginjal, maupun penyakit lainnya. Hematuria tanpa nyeri juga dapat menjadi tanda masalah yang lebih serius sehingga tidak boleh diabaikan.",
+        reference: "NHS - Blood in Urine"
+      },
+      {
+        id: "qz-41",
+        category: "Daily Habits",
+        difficulty: "Mudah",
+        question: "Minuman apa yang paling dianjurkan untuk membantu memenuhi kebutuhan cairan tubuh?",
+        options: [
+          "Minuman bersoda",
+          "Air putih",
+          "Minuman berenergi",
+          "Minuman dengan gula tambahan tinggi"
+        ],
+        correctAnswer: 1,
+        explanation: "Air putih merupakan pilihan yang baik untuk memenuhi kebutuhan cairan tubuh. Asupan cairan yang cukup membantu ginjal mengeluarkan zat sisa melalui urine.",
+        reference: "NIDDK - The Urinary Tract & How It Works"
+      },
+      {
+        id: "qz-42",
+        category: "Daily Habits",
+        difficulty: "Mudah",
+        question: "Apa kebiasaan yang sebaiknya dilakukan ketika merasa ingin buang air kecil?",
+        options: [
+          "Menahan urine selama mungkin",
+          "Segera mencari kesempatan untuk buang air kecil",
+          "Mengurangi minum air sepanjang hari",
+          "Menunggu sampai perut terasa sakit"
+        ],
+        correctAnswer: 1,
+        explanation: "Sebaiknya jangan membiasakan diri menahan urine terlalu lama. Kebiasaan tersebut dapat mengganggu pengosongan kandung kemih dan meningkatkan risiko beberapa masalah saluran kemih.",
+        reference: "NIDDK - The Urinary Tract & How It Works"
+      },
+      {
+        id: "qz-43",
+        category: "Daily Habits",
+        difficulty: "Mudah",
+        question: "Bagaimana arah membersihkan area kemaluan setelah buang air besar pada perempuan untuk membantu mengurangi risiko infeksi saluran kemih?",
+        options: [
+          "Dari belakang ke depan",
+          "Dari depan ke belakang",
+          "Dari kedua arah secara bergantian",
+          "Tidak perlu dibersihkan"
+        ],
+        correctAnswer: 1,
+        explanation: "Membersihkan area kemaluan dari depan ke belakang membantu mencegah bakteri dari anus berpindah ke area lubang kencing sehingga dapat mengurangi risiko infeksi saluran kemih.",
+        reference: "NIDDK - Bladder Infection (UTI) in Adults"
+      },
+      {
+        id: "qz-44",
+        category: "Daily Habits",
+        difficulty: "Sedang",
+        question: "Mengapa seseorang dianjurkan untuk tidak terlalu sering mengonsumsi minuman berkafein seperti kopi jika mengalami kandung kemih yang sensitif?",
+        options: [
+          "Kafein dapat meningkatkan keinginan BAK dan memperburuk gejala pada sebagian orang",
+          "Kafein selalu menyebabkan gagal ginjal",
+          "Kafein menghentikan produksi urine secara permanen",
+          "Kafein membuat kandung kemih tidak dapat menyimpan urine sama sekali"
+        ],
+        correctAnswer: 0,
+        explanation: "Kafein dapat merangsang aktivitas kandung kemih dan membuat sebagian orang lebih sering merasa ingin BAK. Membatasi konsumsi kopi atau teh berkafein dapat membantu mengurangi keluhan pada orang yang sensitif terhadap kafein.",
+        reference: "NIDDK - Bladder Control Problems"
+      },
+      {
+        id: "qz-45",
+        category: "Daily Habits",
+        difficulty: "Sedang",
+        question: "Mengapa menjaga kebersihan area kemaluan penting untuk kesehatan saluran kemih?",
+        options: [
+          "Agar ginjal dapat menyaring darah lebih cepat",
+          "Untuk membantu mengurangi perpindahan dan pertumbuhan bakteri di sekitar saluran kemih",
+          "Agar kandung kemih menghasilkan lebih banyak urine",
+          "Untuk meningkatkan ukuran kandung kemih"
+        ],
+        correctAnswer: 1,
+        explanation: "Menjaga kebersihan area kemaluan membantu mengurangi risiko masuknya bakteri ke saluran kemih. Namun, kebersihan tetap perlu dilakukan dengan cara yang tepat dan tidak berlebihan agar tidak menyebabkan iritasi.",
+        reference: "NIDDK - Bladder Infection (UTI) in Adults"
+      },
+      {
+        id: "qz-46",
+        category: "Daily Habits",
+        difficulty: "Sedang",
+        question: "Mengapa seseorang yang memiliki riwayat batu ginjal sering dianjurkan untuk mencukupi kebutuhan air putih?",
+        options: [
+          "Agar urine menjadi lebih pekat",
+          "Agar mineral dalam urine lebih mudah mengendap",
+          "Agar urine lebih encer sehingga pembentukan batu ginjal dapat dikurangi",
+          "Agar ginjal berhenti memproduksi urine"
+        ],
+        correctAnswer: 2,
+        explanation: "Asupan cairan yang cukup membantu meningkatkan volume urine sehingga konsentrasi mineral pembentuk batu menjadi lebih rendah. Hal ini dapat membantu mengurangi risiko pembentukan batu ginjal berulang. Namun, jumlah cairan perlu disesuaikan dengan kondisi kesehatan masing-masing.",
+        reference: "NIDDK - Kidney Stones"
+      },
+      {
+        id: "qz-47",
+        category: "Daily Habits",
+        difficulty: "Sulit",
+        question: "Seorang pekerja sering menahan BAK selama berjam-jam karena tidak memiliki waktu untuk pergi ke toilet. Kebiasaan ini terus dilakukan setiap hari. Apa dampak yang perlu diperhatikan?",
+        options: [
+          "Kandung kemih akan semakin kuat tanpa risiko",
+          "Kebiasaan tersebut dapat mengganggu fungsi kandung kemih dan meningkatkan risiko masalah saluran kemih",
+          "Ginjal akan berhenti memproduksi urine",
+          "Tubuh tidak lagi membutuhkan air putih"
+        ],
+        correctAnswer: 1,
+        explanation: "Terlalu sering menahan BAK dapat mengganggu kebiasaan pengosongan kandung kemih dan berpotensi menyebabkan gangguan berkemih. Urine yang tertahan juga dapat meningkatkan risiko pertumbuhan bakteri, terutama jika kandung kemih tidak kosong sempurna.",
+        reference: "NIDDK - The Urinary Tract & How It Works"
+      },
+      {
+        id: "qz-48",
+        category: "Daily Habits",
+        difficulty: "Sulit",
+        question: "Seseorang mengonsumsi obat pereda nyeri secara rutin tanpa berkonsultasi dengan dokter. Mengapa kebiasaan ini dapat berisiko terhadap kesehatan ginjal?",
+        options: [
+          "Beberapa obat pereda nyeri dapat mengurangi aliran darah ke ginjal dan menyebabkan kerusakan jika digunakan secara berlebihan atau dalam kondisi tertentu",
+          "Semua obat pereda nyeri meningkatkan produksi urine",
+          "Obat pereda nyeri selalu menyebabkan batu kandung kemih",
+          "Obat pereda nyeri membuat ginjal menghasilkan terlalu banyak vitamin"
+        ],
+        correctAnswer: 0,
+        explanation: "Beberapa obat pereda nyeri, terutama golongan antiinflamasi nonsteroid (OAINS/NSAID) seperti ibuprofen dan naproxen, dapat memengaruhi aliran darah menuju ginjal. Penggunaan yang berlebihan atau tanpa pengawasan, terutama pada orang yang memiliki gangguan ginjal atau kekurangan cairan, dapat meningkatkan risiko kerusakan ginjal.",
+        reference: "NIDDK - Keeping Kidneys Safe: Smart Choices About Medicines"
+      },
+      {
+        id: "qz-49",
+        category: "Daily Habits",
+        difficulty: "Sulit",
+        question: "Seorang perempuan sering mengalami infeksi saluran kemih setelah melakukan hubungan seksual. Kebiasaan apa yang dapat dicoba untuk membantu mengurangi risikonya?",
+        options: [
+          "Menahan BAK setelah berhubungan seksual",
+          "Tidak minum air putih setelah berhubungan seksual",
+          "Buang air kecil setelah berhubungan seksual dan menjaga kebersihan area genital",
+          "Menggunakan antibiotik setiap selesai berhubungan seksual tanpa anjuran dokter"
+        ],
+        correctAnswer: 2,
+        explanation: "Buang air kecil setelah berhubungan seksual dapat membantu mengeluarkan bakteri yang mungkin masuk ke uretra. Menjaga kebersihan area genital juga merupakan salah satu kebiasaan yang dapat membantu mengurangi risiko infeksi. Namun, cara ini tidak menjamin ISK sepenuhnya dapat dicegah.",
+        reference: "NIDDK - Bladder Infection (UTI) in Adults"
+      },
+      {
+        id: "qz-50",
+        category: "Daily Habits",
+        difficulty: "Sulit",
+        question: "Seseorang ingin mulai menerapkan pola hidup sehat untuk menjaga ginjal dan saluran kemih. Manakah kombinasi kebiasaan yang paling tepat?",
+        options: [
+          "Minum air putih secukupnya, membatasi garam, rutin beraktivitas fisik, dan tidak menahan BAK",
+          "Minum hanya ketika merasa sangat haus, sering mengonsumsi makanan asin, dan menahan BAK",
+          "Mengonsumsi suplemen tanpa aturan, menghindari aktivitas fisik, dan mengurangi waktu tidur",
+          "Mengonsumsi obat pereda nyeri setiap hari dan menghindari pemeriksaan kesehatan"
+        ],
+        correctAnswer: 0,
+        explanation: "Menjaga kesehatan ginjal dan saluran kemih membutuhkan kombinasi kebiasaan sehat. Mencukupi kebutuhan cairan, membatasi konsumsi garam, menjaga berat badan, aktif bergerak, mengontrol tekanan darah, dan tidak menahan BAK dapat membantu menjaga kesehatan sistem kemih. Kebutuhan cairan tetap harus disesuaikan dengan kondisi kesehatan, terutama bagi orang dengan penyakit ginjal atau jantung.",
+        reference: "NIDDK - Managing Chronic Kidney Disease"
+      }
+    ];
+
+    // 5. DATA TOILET TALK SCENARIO
+    const SCENARIO_DATA = [
+      {
+        id: "sc-01",
+        title: "Ketika urine berubah warna",
+        category: "Urinary & BAK",
+        description: "Andi sedang sibuk mengerjakan tugas kuliah sehingga sering lupa minum air putih. Sejak pagi, ia hanya minum satu gelas air. Ketika buang air kecil, Andi menyadari bahwa warna urinenya menjadi kuning pekat dan jumlahnya lebih sedikit dari biasanya. Ia mulai khawatir dengan kondisi tersebut. Apa yang sebaiknya dilakukan oleh Andi?",
+        options: [
+          {
+            text: "Mengurangi minum agar tidak terlalu ssering buang air kecil",
+            feedback: "Mengurangi asupan cairan justru dapat memperburuk kekurangan cairan dalam tubuh. Urine dapat menjadi semakin pekat dan jumlahnya semakin sedikit",
+            isBest: false
+          },
+          {
+            text: "Meningkatkan konsumsi air putih secara bertahap dan memperhatikan perubahan warna urine",
+            feedback: "Tepat sekali! Warna urine yang kuning pekat dapat menjadi salah satu tanda bahwa tubuh membutuhkan lebih banyak cairan. Meningkatkan asupan air dapat membantu mengembalikan keseimbangan cairan tubuh",
+            isBest: true
+          },
+          {
+            text: "Langsung mengonsumsi antibiotik karena menganggap urine berubah akibat infeksi",
+            feedback: "Perubahan warna urine tidak selalu menandakan infeksi saluran kemih. Antibiotik tidak boleh dikonsumsi tanpa indikasi dan resep tenaga medis",
+            isBest: false
+          }
+        ],
+        bestResponseExplanation: "Warna urine dapat memberikan gambaran mengenai kondisi hidrasi tubuh. Urine yang berwarna kuning muda umumnya menunjukkan bahwa tubuh mendapatkan cairan yang cukup, sedangkan urine yang lebih pekat dapat menjadi tanda kekurangan cairan. Oleh karena itu, penting untuk memenuhi kebutuhan cairan harian dan memperhatikan perubahan warna urine. Jika perubahan warna menetap, disertai nyeri, demam, atau urine berdarah, sebaiknya lakukan pemeriksaan ke fasilitas kesehatan",
+        reference: "NHS - Dehydration"
+      },
+      {
+        id: "sc-02",
+        title: "Terlalu sering menahan buang air kecil",
+        category: "Urine & BAK",
+        description: "Rina sedang mengikuti perjalanan menggunakan bus antarkota. Ia merasa ingin buang air kecil, tetapi memilih untuk menahannya karena bus belum berhenti di tempat istirahat. Setelah beberapa jam, ia mulai merasakan rasa tidak nyaman pada bagian bawah perut. Apa yang sebaiknya dilakukan oleh Rina?",
+        options: [
+          {
+            text: "Tetap menahan buang air kecil sampai benar-benar tidak tahan",
+            feedback: "Menahan urine terlalu lama secara berulang bukan kebiasaan yang baik. Hal ini dapat menyebabkan ketidaknyamanan dan mengganggu kebiasaan berkemih yang sehat.",
+            isBest: false
+          },
+          {
+            text: "Mengurangi minum sepanjang perjalanan agar tidak ingin buang air kecil",
+            feedback: "Membatasi cairan secara berlebihan dapat menyebabkan dehidrasi dan membuat urine lebih pekat. Hal ini bukan cara yang tepat untuk mengatasi keinginan buang air kecil.",
+            isBest: false
+          },
+          {
+            text: "Meminta bus berhenti di tempat istirahat terdekat untuk buang air kecil",
+            feedback: "Tepat sekali! Sebaiknya jangan membiasakan diri menahan buang air kecil terlalu lama. Berikan kesempatan kepada kandung kemih untuk mengosongkan urine secara teratur.",
+            isBest: true
+          }
+        ],
+        bestResponseExplanation: "Kandung kemih berfungsi menampung urine sebelum dikeluarkan melalui proses buang air kecil. Kebiasaan menahan urine terlalu lama dan berulang dapat menyebabkan ketidaknyamanan serta mengganggu kebiasaan berkemih yang sehat. Oleh karena itu, buang air kecil sebaiknya dilakukan ketika muncul dorongan yang wajar tanpa sengaja menundanya terus-menerus.",
+        reference: "NIDDK - Bladder Health"
+      },
+      {
+        id: "sc-03",
+        title: "Nyeri saat buang air kecil",
+        category: "Urine & BAK",
+        description: "Dina mulai merasakan sensasi panas dan perih setiap kali buang air kecil. Ia juga merasa ingin buang air kecil lebih sering, tetapi urine yang keluar hanya sedikit. Awalnya, Dina menganggap hal tersebut biasa dan berencana membiarkannya sampai sembuh sendiri. Apa yang sebaiknya dilakukan oleh Dina?",
+        options: [
+          {
+            text: "Memperbanyak minum air putih dan mengabaikan gejala tersebut",
+            feedback: "Minum cukup air dapat membantu menjaga hidrasi, tetapi tidak selalu dapat mengatasi penyebab nyeri saat buang air kecil. Gejala tersebut tetap perlu diperhatikan.",
+            isBest: false
+          },
+          {
+            text: "Memeriksakan diri ke fasilitas kesehatan untuk mengetahui penyebab keluhan",
+            feedback: "Tepat sekali! Nyeri saat buang air kecil, terutama jika disertai frekuensi berkemih meningkat, dapat menjadi tanda infeksi saluran kemih. Pemeriksaan diperlukan untuk menentukan penanganan yang sesuai.",
+            isBest: true
+          },
+          {
+            text: "Membeli antibiotik sendiri di apotek tanpa pemeriksaan",
+            feedback: "Penggunaan antibiotik tanpa pemeriksaan dapat menyebabkan pengobatan yang tidak sesuai dan meningkatkan risiko resistensi antibiotik.",
+            isBest: false
+          }
+        ],
+        bestResponseExplanation: "Nyeri atau sensasi terbakar saat buang air kecil disebut disuria. Kondisi ini dapat disebabkan oleh infeksi saluran kemih maupun gangguan lainnya. Jika disertai sering buang air kecil, rasa tidak tuntas, atau nyeri perut bagian bawah, seseorang perlu melakukan pemeriksaan. Apabila muncul demam, menggigil, nyeri pinggang, atau muntah, segera cari pertolongan medis karena infeksi dapat melibatkan ginjal.",
+        reference: "NIDDK - Bladder Infection (Urinary Tract Infection/UTI) in Adults"
+      },
+      {
+        id: "sc-04",
+        title: "Kebiasaan minum air yang kurang",
+        category: "Kidney Health",
+        description: "Budi memiliki aktivitas yang cukup padat setiap harinya. Ia sering lupa minum air putih dan lebih memilih kopi atau minuman manis untuk menemani pekerjaannya. Belakangan ini, ia menyadari bahwa urinenya lebih pekat dan frekuensi buang air kecilnya berkurang. Apa yang sebaiknya dilakukan oleh Budi?",
+        options: [
+          {
+            text: "Mengganti seluruh kebutuhan cairan dengan kopi karena sama-sama berbentuk minuman",
+            feedback: "Kopi memang mengandung cairan, tetapi mengandalkan kopi sebagai satu-satunya sumber cairan bukan kebiasaan yang dianjurkan. Air putih tetap menjadi pilihan utama untuk memenuhi kebutuhan cairan.",
+            isBest: false
+          },
+          {
+            text: "Membiasakan minum air putih secara teratur sepanjang hari dan menyesuaikan jumlahnya dengan kebutuhan tubuh",
+            feedback: "Tepat sekali! Asupan cairan yang cukup membantu ginjal membuang zat sisa metabolisme melalui urine dan menjaga keseimbangan cairan tubuh.",
+            isBest: true
+          },
+          {
+            text: "Menunggu sampai merasa sangat haus sebelum mulai minum",
+            feedback: "Rasa haus merupakan salah satu tanda tubuh membutuhkan cairan. Membiasakan minum secara teratur dapat membantu mencegah kekurangan cairan, terutama ketika beraktivitas atau berada di lingkungan panas.",
+            isBest: false
+          }
+        ],
+        bestResponseExplanation: "Ginjal memiliki peran penting dalam menyaring darah, membuang zat sisa metabolisme, serta mengatur keseimbangan cairan dan elektrolit. Kekurangan cairan dapat menyebabkan dehidrasi dan membuat urine lebih pekat. Oleh karena itu, penting untuk menjaga asupan cairan yang cukup setiap hari. Kebutuhan cairan setiap orang berbeda, bergantung pada aktivitas, kondisi kesehatan, cuaca, dan faktor lainnya. Orang dengan pembatasan cairan akibat kondisi medis tertentu harus mengikuti anjuran tenaga kesehatan.",
+        reference: "NIDDK - Your Kidneys and How They Work; National Kidney Foundation - Healthy Hydration"
+      },
+      {
+        id: "sc-05",
+        title: "Terlalu sering mengonsumsi makanan asin",
+        category: "Kidney Health",
+        description: "Setiap hari, Siska terbiasa mengonsumsi makanan instan, keripik, dan makanan cepat saji. Ia merasa makanan tersebut praktis dan enak sehingga jarang memperhatikan kandungan garam di dalamnya. Suatu hari, ia membaca bahwa konsumsi garam berlebihan dapat berdampak pada kesehatan ginjal. Apa yang sebaiknya dilakukan oleh Siska?",
+        options: [
+          {
+            text: "Tetap mengonsumsi makanan tersebut karena tubuh membutuhkan garam untuk beraktivitas",
+            feedback: "Tubuh memang membutuhkan natrium, tetapi konsumsi berlebihan dapat meningkatkan tekanan darah dan memberikan beban tambahan bagi ginjal.",
+            isBest: false
+          },
+          {
+            text: "Mengurangi konsumsi makanan tinggi garam dan mulai memilih makanan yang lebih segar serta bergizi seimbang",
+            feedback: "Tepat sekali! Mengurangi asupan garam dapat membantu menjaga tekanan darah dan menurunkan salah satu faktor risiko terjadinya gangguan ginjal.",
+            isBest: true
+          },
+          {
+            text: "Mengonsumsi lebih banyak air putih agar seluruh garam yang masuk dapat langsung dikeluarkan",
+            feedback: "Minum air putih tidak secara otomatis menghilangkan dampak konsumsi garam berlebihan. Pola makan tetap perlu diperbaiki.",
+            isBest: false
+          }
+        ],
+        bestResponseExplanation: "Konsumsi natrium atau garam secara berlebihan dapat meningkatkan tekanan darah. Tekanan darah tinggi yang berlangsung dalam jangka panjang dapat merusak pembuluh darah kecil di ginjal sehingga kemampuan ginjal untuk menyaring darah dapat terganggu. Oleh karena itu, masyarakat dianjurkan membatasi konsumsi garam, membaca label kandungan natrium pada makanan kemasan, dan menerapkan pola makan bergizi seimbang. WHO merekomendasikan konsumsi natrium kurang dari 2.000 mg per hari atau setara dengan kurang dari 5 gram garam untuk orang dewasa.",
+        reference: "WHO - Sodium Reduction; NIDDK - Kidney Disease"
+      },
+      {
+        id: "sc-06",
+        title: "Sering mengonsumsi obat pereda nyeri",
+        category: "Kidney Health",
+        description: "Doni sering mengalami sakit kepala setelah beraktivitas. Untuk mengatasinya, ia terbiasa mengonsumsi obat pereda nyeri yang dibeli sendiri tanpa memperhatikan aturan penggunaan. Bahkan, ia terkadang mengonsumsi obat tersebut beberapa kali dalam sehari karena ingin rasa sakitnya cepat hilang. Suatu hari, temannya mengingatkan bahwa kebiasaan tersebut dapat berdampak pada ginjal. Apa yang sebaiknya dilakukan oleh Doni?",
+        options: [
+          {
+            text: "Tetap mengonsumsi obat selama rasa sakitnya berkurang",
+            feedback: "Penggunaan obat tanpa memperhatikan dosis dan aturan dapat meningkatkan risiko efek samping, termasuk gangguan fungsi ginjal pada jenis obat tertentu.",
+            isBest: false
+          },
+          {
+            text: "Menghentikan semua jenis obat selamanya karena obat dapat merusak ginjal",
+            feedback: "Tidak semua obat berbahaya bagi ginjal. Obat tetap dapat digunakan secara aman apabila sesuai indikasi, dosis, dan petunjuk tenaga kesehatan.",
+            isBest: false
+          },
+          {
+            text: "Memeriksa aturan penggunaan obat, menghindari penggunaan berlebihan, dan berkonsultasi dengan tenaga kesehatan jika sering membutuhkan obat pereda nyeri",
+            feedback: "Tepat sekali! Penggunaan obat secara bijak dapat membantu mengurangi risiko efek samping. Beberapa obat pereda nyeri, terutama golongan NSAID, dapat mengganggu aliran darah menuju ginjal dan meningkatkan risiko kerusakan ginjal.",
+            isBest: true
+          }
+        ],
+        bestResponseExplanation: "Ginjal berperan dalam memproses dan membuang berbagai zat, termasuk sisa metabolisme obat. Penggunaan obat antiinflamasi nonsteroid (NSAID), seperti ibuprofen dan naproxen, secara berlebihan atau dalam kondisi tertentu dapat menyebabkan gangguan fungsi ginjal. Risiko tersebut dapat meningkat pada orang yang mengalami dehidrasi, memiliki penyakit ginjal, atau menggunakan obat tertentu lainnya. Oleh karena itu, selalu gunakan obat sesuai petunjuk dan jangan membiasakan diri mengonsumsi obat tanpa memperhatikan keamanannya.",
+        reference: "NIDDK - Keeping Kidneys Safe: Smart Choices About Medicines; National Kidney Foundation - Pain Medicines and Kidney Disease"
+      },
+      {
+        id: "sc-07",
+        title: "Sering terbangun untuk buang air kecil",
+        category: "Bladder Health",
+        description: "Malam hari, Fajar terbiasa minum beberapa gelas air sekaligus sebelum tidur. Akibatnya, ia sering terbangun dua sampai tiga kali setiap malam untuk buang air kecil. Kebiasaan tersebut membuat waktu tidurnya terganggu dan ia merasa kurang segar ketika bangun pagi. Apa yang sebaiknya dilakukan oleh Fajar?",
+        options: [
+          {
+            text: "Mengurangi konsumsi cairan dalam jumlah besar menjelang tidur, tetapi tetap memenuhi kebutuhan cairan pada siang hari",
+            feedback: "Tepat sekali! Mengatur waktu minum dapat membantu mengurangi frekuensi buang air kecil pada malam hari tanpa harus menyebabkan tubuh kekurangan cairan.",
+            isBest: true
+          },
+          {
+            text: "Tidak minum air putih sama sekali setelah pukul 18.00",
+            feedback: "Menghentikan konsumsi cairan sepenuhnya dapat menyebabkan kekurangan cairan, terutama jika sebelumnya aktivitas fisik cukup berat atau tubuh kehilangan banyak cairan.",
+            isBest: false
+          },
+          {
+            text: "Membiasakan diri menahan buang air kecil ketika terbangun pada malam hari",
+            feedback: "Menahan urine bukan solusi untuk mengatasi kebiasaan sering buang air kecil pada malam hari. Penyebab keluhan sebaiknya dicari terlebih dahulu jika terus berulang.",
+            isBest: false
+          }
+        ],
+        bestResponseExplanation: "Buang air kecil pada malam hari atau nokturia merupakan kondisi ketika seseorang terbangun dari tidur untuk berkemih. Salah satu faktor yang dapat memengaruhinya adalah konsumsi cairan dalam jumlah besar menjelang tidur. Namun, nokturia juga dapat berkaitan dengan kondisi lain, seperti infeksi saluran kemih, diabetes, gangguan kandung kemih, atau masalah kesehatan lainnya. Apabila keluhan terus terjadi dan mengganggu tidur, sebaiknya lakukan pemeriksaan.",
+        reference: "NIDDK - Nocturia; NHS - Frequent Urination"
+      },
+      {
+        id: "sc-08",
+        title: "Kebiasaan kurang menjaga kebersihan area genital",
+        category: "Bladder Health",
+        description: "Setelah berolahraga, Maya sering langsung mengganti pakaian tanpa membersihkan atau mengeringkan area genitalnya. Ia juga terbiasa menggunakan pakaian dalam yang masih lembap setelah berkeringat. Beberapa waktu kemudian, Maya mulai merasa tidak nyaman pada area tersebut. Apa yang sebaiknya dilakukan oleh Maya?",
+        options: [
+          {
+            text: "Menggunakan sabun dengan pewangi kuat untuk membersihkan area genital secara menyeluruh",
+            feedback: "Produk dengan pewangi atau bahan iritatif dapat menyebabkan iritasi pada area genital. Kebersihan tidak harus dilakukan menggunakan produk pembersih yang keras.",
+            isBest: false
+          },
+          {
+            text: "Membersihkan area genital dengan cara yang tepat, mengeringkannya, dan mengganti pakaian dalam yang lembap",
+            feedback: "Tepat sekali! Menjaga area genital tetap bersih dan kering dapat membantu mengurangi kelembapan serta risiko iritasi.",
+            isBest: true
+          },
+          {
+            text: "Membiarkan pakaian dalam tetap digunakan selama belum terasa bau",
+            feedback: "Pakaian dalam yang lembap sebaiknya segera diganti meskipun belum menimbulkan bau tidak sedap.",
+            isBest: false
+          }
+        ],
+        bestResponseExplanation: "Menjaga kebersihan area genital merupakan salah satu bagian dari kebiasaan sehat untuk mendukung kesehatan saluran kemih. Area genital sebaiknya dibersihkan menggunakan air dan dikeringkan dengan lembut. Setelah buang air besar, perempuan dianjurkan membersihkan dari arah depan ke belakang untuk mengurangi kemungkinan perpindahan bakteri dari area anus menuju uretra. Selain itu, mengganti pakaian dalam setelah berkeringat dan menghindari produk yang dapat menyebabkan iritasi juga merupakan kebiasaan yang baik.",
+        reference: "NHS - Urinary Tract Infections (UTIs); Office on Women's Health - Urinary Tract Infections"
+      },
+      {
+        id: "sc-09",
+        title: "Tidak mengosongkan kandung kemih sepenuhnya",
+        category: "Bladder Health",
+        description: "Setiap kali pergi ke toilet, Arman selalu terburu-buru karena tidak ingin terlambat mengikuti kelas. Ia sering langsung meninggalkan toilet meskipun terkadang masih merasa ada urine yang tertinggal di kandung kemih. Belakangan, ia mulai merasa ingin buang air kecil kembali tidak lama setelah dari toilet. Apa yang sebaiknya dilakukan oleh Arman?",
+        options: [
+          {
+            text: "Membiasakan diri meluangkan waktu untuk buang air kecil tanpa terburu-buru dan memperhatikan apakah kandung kemih sudah terasa kosong",
+            feedback: "Tepat sekali! Memberikan waktu yang cukup untuk berkemih dapat membantu proses pengosongan kandung kemih. Jika rasa tidak tuntas terus terjadi, Arman perlu memeriksakan diri.",
+            isBest: true
+          },
+          {
+            text: "Mengejan dengan kuat agar seluruh urine keluar lebih cepat",
+            feedback: "Mengejan secara berlebihan bukan cara yang dianjurkan untuk mengosongkan kandung kemih dan tidak mengatasi penyebab gangguan berkemih.",
+            isBest: false
+          },
+          {
+            text: "Mengurangi minum air putih agar kandung kemih tidak cepat penuh",
+            feedback: "Mengurangi cairan secara berlebihan dapat menyebabkan dehidrasi dan tidak menyelesaikan masalah pengosongan kandung kemih.",
+            isBest: false
+          }
+        ],
+        bestResponseExplanation: "Kandung kemih yang sehat dapat menampung urine dan mengeluarkannya melalui proses berkemih. Sensasi masih ingin buang air kecil setelah selesai berkemih dapat menunjukkan adanya gangguan pengosongan kandung kemih atau kondisi lain. Kebiasaan berkemih yang tidak terburu-buru dapat membantu, tetapi keluhan yang berulang perlu dievaluasi. Pemeriksaan medis penting untuk mengetahui apakah terdapat gangguan pada otot kandung kemih, penyempitan saluran kemih, atau pembesaran prostat pada laki-laki.",
+        reference: "NIDDK - Urinary Retention; NIDDK - Bladder Health"
+      },
+      {
+        id: "sc-10",
+        title: "Ketika menemukan darah dalam urine",
+        category: "Urinary Problems",
+        description: "Sepulang bekerja, Riko pergi ke toilet dan menyadari bahwa urinenya berwarna kemerahan. Ia tidak merasakan nyeri atau keluhan lainnya sehingga menganggap kondisi tersebut tidak berbahaya. Riko berencana menunggu beberapa hari untuk melihat apakah warna urinenya kembali normal. Apa yang sebaiknya dilakukan oleh Riko?",
+        options: [
+          {
+            text: "Mengabaikannya karena tidak disertai rasa sakit",
+            feedback: "Darah dalam urine tidak selalu disertai nyeri. Meskipun tidak terasa sakit, kondisi tersebut tetap perlu diperiksa karena dapat menjadi tanda gangguan pada saluran kemih atau ginjal.",
+            isBest: false
+          },
+          {
+            text: "Memperbanyak minum air putih dan menunggu sampai urine kembali jernih",
+            feedback: "Minum air putih memang penting untuk menjaga hidrasi, tetapi tidak dapat dipastikan dapat mengatasi penyebab darah dalam urine.",
+            isBest: false
+          },
+          {
+            text: "Segera memeriksakan diri ke fasilitas kesehatan untuk mengetahui penyebab perubahan warna urine",
+            feedback: "Tepat sekali! Urine yang mengandung darah atau hematuria perlu mendapatkan pemeriksaan medis, meskipun hanya terjadi satu kali dan tidak disertai rasa sakit.",
+            isBest: true
+          }
+        ],
+        bestResponseExplanation: "Hematuria merupakan kondisi ketika terdapat darah dalam urine. Kondisi ini dapat membuat urine terlihat berwarna merah muda, merah, atau kecokelatan. Penyebabnya beragam, mulai dari infeksi saluran kemih, batu ginjal, gangguan ginjal, hingga masalah pada kandung kemih. Darah dalam urine tidak boleh dianggap normal, bahkan jika tidak menimbulkan rasa sakit. Pemeriksaan dapat meliputi tes urine dan pemeriksaan lainnya sesuai indikasi untuk mengetahui penyebabnya.",
+        reference: "NIDDK - Hematuria (Blood in the Urine); NHS - Blood in Urine"
+      },
+      {
+        id: "sc-11",
+        title: "Nyeri pinggang yang menjalar ke perut",
+        category: "Urinary Problems",
+        description: "Saat sedang bekerja, Dimas tiba-tiba merasakan nyeri hebat pada salah satu sisi pinggangnya. Rasa sakit tersebut terkadang menjalar hingga ke bagian bawah perut dan membuatnya sulit menemukan posisi yang nyaman. Ia juga merasa mual dan beberapa kali ingin muntah. Dimas menduga dirinya hanya mengalami sakit pinggang akibat terlalu lama duduk. Apa yang sebaiknya dilakukan oleh Dimas?",
+        options: [
+          {
+            text: "Segera mencari pertolongan medis karena nyeri hebat tersebut dapat berkaitan dengan batu ginjal atau gangguan saluran kemih lainnya",
+            feedback: "Tepat sekali! Nyeri hebat pada pinggang yang menjalar ke perut dan disertai mual dapat menjadi gejala batu ginjal. Pemeriksaan diperlukan untuk memastikan penyebabnya dan menentukan penanganan.",
+            isBest: true
+          },
+          {
+            text: "Melakukan pijatan kuat pada bagian pinggang agar rasa sakit segera hilang",
+            feedback: "Pijatan tidak mengatasi penyebab nyeri apabila terdapat batu pada saluran kemih. Tindakan tersebut juga dapat menunda pemeriksaan yang diperlukan.",
+            isBest: false
+          },
+          {
+            text: "Mengonsumsi obat pereda nyeri sebanyak mungkin dan tetap melanjutkan aktivitas",
+            feedback: "Mengonsumsi obat secara berlebihan dapat menimbulkan efek samping, termasuk gangguan ginjal. Nyeri hebat perlu dievaluasi oleh tenaga medis.",
+            isBest: false
+          }
+        ],
+        bestResponseExplanation: "Batu ginjal terbentuk ketika mineral dan garam dalam urine mengendap dan membentuk kristal yang dapat berkembang menjadi batu. Salah satu gejala yang sering muncul adalah nyeri hebat pada pinggang atau sisi tubuh yang dapat menjalar ke perut bagian bawah dan selangkangan. Keluhan lainnya dapat berupa mual, muntah, urine berdarah, atau nyeri saat buang air kecil. Apabila nyeri disertai demam, menggigil, atau kesulitan buang air kecil, segera cari pertolongan medis karena dapat menandakan kondisi yang serius.",
+        reference: "NIDDK - Kidney Stones; NHS - Kidney Stones"
+      },
+      {
+        id: "sc-12",
+        title: "Tidak bisa buang air kecil",
+        category: "Urinary Problems",
+        description: "Pak Andi, berusia 58 tahun, beberapa bulan terakhir sering mengalami kesulitan saat buang air kecil. Aliran urinenya semakin lemah dan ia harus mengejan agar urine dapat keluar. Suatu malam, ia merasakan perut bagian bawah sangat nyeri dan penuh, tetapi sama sekali tidak bisa mengeluarkan urine meskipun sudah berulang kali mencoba. Apa yang sebaiknya dilakukan oleh Pak Andi?",
+        options: [
+          {
+            text: "Minum air putih sebanyak mungkin agar kandung kemih segera terisi dan urine dapat keluar",
+            feedback: "Jika kandung kemih sudah penuh tetapi urine tidak dapat keluar, menambah cairan bukan solusi dan dapat memperburuk ketidaknyamanan.",
+            isBest: false
+          },
+          {
+            text: "Segera pergi ke instalasi gawat darurat karena kondisi tersebut dapat menunjukkan retensi urine akut",
+            feedback: "Tepat sekali! Ketidakmampuan mengeluarkan urine secara tiba-tiba, terutama disertai nyeri dan perut bagian bawah terasa penuh, merupakan kondisi darurat yang membutuhkan penanganan segera.",
+            isBest: true
+          },
+          {
+            text: "Menunggu sampai keesokan harinya karena kesulitan buang air kecil merupakan hal yang wajar pada usia lanjut",
+            feedback: "Tidak bisa buang air kecil secara tiba-tiba bukan kondisi normal akibat bertambahnya usia. Menunda penanganan dapat membahayakan kandung kemih dan ginjal.",
+            isBest: false
+          }
+        ],
+        bestResponseExplanation: "Retensi urine merupakan kondisi ketika seseorang tidak dapat mengosongkan kandung kemih sepenuhnya atau bahkan tidak dapat mengeluarkan urine sama sekali. Pada laki-laki usia lanjut, salah satu penyebab yang sering ditemukan adalah pembesaran prostat jinak (Benign Prostatic Hyperplasia/BPH), yang dapat menekan uretra dan menghambat aliran urine. Retensi urine akut merupakan kondisi darurat. Penanganan awal umumnya dilakukan dengan mengeluarkan urine melalui pemasangan kateter oleh tenaga medis. Oleh karena itu, kondisi tersebut tidak boleh ditunda.",
+        reference: "NIDDK - Urinary Retention; NIDDK - Enlarged Prostate (Benign Prostatic Hyperplasia)"
+      },
+      {
+        id: "sc-13",
+        title: "Terlalu sering mengonsumsi minuman manis",
+        category: "Daily Habits",
+        description: "Setiap hari, Nabila terbiasa membeli minuman manis seperti teh kemasan, soda, dan minuman dengan tambahan sirup. Ia jarang minum air putih karena merasa minuman manis lebih menyegarkan. Setelah membaca informasi kesehatan, Nabila mengetahui bahwa konsumsi gula berlebihan dapat meningkatkan risiko diabetes dan berdampak pada kesehatan ginjal. Apa yang sebaiknya dilakukan oleh Nabila?",
+        options: [
+          {
+            text: "Mengurangi konsumsi minuman manis dan mulai membiasakan diri memilih air putih sebagai minuman utama",
+            feedback: "Tepat sekali! Mengurangi konsumsi gula tambahan dapat membantu menjaga kesehatan tubuh dan mengurangi risiko diabetes tipe 2, yang merupakan salah satu faktor risiko utama penyakit ginjal kronis.",
+            isBest: true
+          },
+          {
+            text: "Mengganti minuman manis dengan jus buah kemasan yang memiliki rasa lebih alami",
+            feedback: "Tidak semua jus kemasan bebas dari gula tambahan. Kandungan gula pada label produk tetap perlu diperhatikan.",
+            isBest: false
+          },
+          {
+            text: "Tetap mengonsumsi minuman manis setiap hari selama diimbangi dengan olahraga",
+            feedback: "Aktivitas fisik memang penting, tetapi tidak sepenuhnya menghilangkan dampak konsumsi gula tambahan secara berlebihan.",
+            isBest: false
+          }
+        ],
+        bestResponseExplanation: "Konsumsi minuman dengan kandungan gula tambahan yang tinggi secara berlebihan dapat meningkatkan risiko obesitas dan diabetes tipe 2. Diabetes merupakan salah satu penyebab utama kerusakan ginjal karena kadar gula darah yang tinggi dalam jangka panjang dapat merusak pembuluh darah kecil di ginjal. Oleh karena itu, membatasi minuman manis, memperhatikan label kandungan gula, dan membiasakan minum air putih merupakan langkah sederhana untuk menjaga kesehatan ginjal.",
+        reference: "CDC - Diabetes and Your Kidneys; WHO - Healthy Diet"
+      },
+      {
+        id: "sc-14",
+        title: "Jarang berolahraga dan terlalu lama duduk",
+        category: "Daily Habits",
+        description: "Setelah mengikuti perkuliahan, Reza biasanya langsung pulang dan menghabiskan waktu berjam-jam di depan komputer. Ia jarang berolahraga dan lebih sering memilih menggunakan kendaraan meskipun jarak yang ditempuh cukup dekat. Belakangan, ia mulai menyadari bahwa aktivitas fisiknya sangat minim. Apa yang sebaiknya dilakukan oleh Reza?",
+        options: [
+          {
+            text: "Tetap menjalani kebiasaan tersebut selama tidak mengalami keluhan kesehatan",
+            feedback: "Kurangnya aktivitas fisik dapat meningkatkan risiko berbagai masalah kesehatan, termasuk obesitas, diabetes, dan tekanan darah tinggi yang dapat berdampak pada ginjal.",
+            isBest: false
+          },
+          {
+            text: "Mulai melakukan aktivitas fisik secara teratur, seperti berjalan kaki, bersepeda, atau olahraga ringan sesuai kemampuan",
+            feedback: "Tepat sekali! Aktivitas fisik secara rutin membantu menjaga berat badan, tekanan darah, dan kadar gula darah sehingga turut mendukung kesehatan ginjal.",
+            isBest: true
+          },
+          {
+            text: "Melakukan olahraga berat selama beberapa jam sekaligus pada akhir pekan untuk menggantikan aktivitas selama seminggu",
+            feedback: "Olahraga memang bermanfaat, tetapi sebaiknya dilakukan secara bertahap dan konsisten. Aktivitas fisik berlebihan tanpa persiapan dapat meningkatkan risiko cedera dan dehidrasi.",
+            isBest: false
+          }
+        ],
+        bestResponseExplanation: "Aktivitas fisik memiliki peran penting dalam menjaga kesehatan tubuh, termasuk sistem ginjal dan saluran kemih. Olahraga secara teratur membantu mengontrol tekanan darah, menjaga berat badan, serta mengurangi risiko diabetes tipe 2. Ketiga faktor tersebut berkaitan erat dengan risiko penyakit ginjal kronis. WHO merekomendasikan orang dewasa melakukan aktivitas fisik aerobik intensitas sedang selama 150–300 menit per minggu atau intensitas berat selama 75–150 menit per minggu, sesuai kemampuan masing-masing.",
+        reference: "WHO - Physical Activity; National Kidney Foundation - Kidney Health"
+      },
+      {
+        id: "sc-15",
+        title: "Kebiasaan kurang tidur dan sering begadang",
+        category: "Daily Habits",
+        description: "Setiap malam, Farah terbiasa tidur larut karena bermain ponsel dan menonton film. Ia rata-rata hanya tidur sekitar empat sampai lima jam setiap malam. Selain itu, ia sering mengonsumsi kopi agar tetap terjaga pada siang hari. Farah mulai merasa mudah lelah dan kesulitan berkonsentrasi saat beraktivitas. Apa yang sebaiknya dilakukan oleh Farah?",
+        options: [
+          {
+            text: "Tetap tidur larut selama kebutuhan tugas dan pekerjaannya masih banyak",
+            feedback: "Kurang tidur secara terus-menerus dapat berdampak pada kesehatan secara keseluruhan dan mengganggu pengaturan tekanan darah serta metabolisme tubuh.",
+            isBest: false
+          },
+          {
+            text: "Mengganti waktu tidur yang kurang dengan mengonsumsi kopi atau minuman berenergi",
+            feedback: "Kafein hanya membantu meningkatkan kewaspadaan sementara dan tidak dapat menggantikan manfaat tidur yang cukup.",
+            isBest: false
+          },
+          {
+            text: "Memperbaiki jadwal tidur, membatasi penggunaan ponsel sebelum tidur, dan membiasakan tidur cukup setiap malam",
+            feedback: "Tepat sekali! Tidur yang cukup dan berkualitas merupakan bagian dari pola hidup sehat. Mengatur waktu tidur dapat membantu menjaga kesehatan tubuh, termasuk mendukung pengaturan tekanan darah dan metabolisme.",
+            isBest: true
+          }
+        ],
+        bestResponseExplanation: "Tidur merupakan salah satu kebutuhan dasar tubuh yang berperan dalam pemulihan dan pengaturan berbagai fungsi fisiologis. Kebiasaan tidur yang kurang dapat berkaitan dengan peningkatan risiko tekanan darah tinggi, obesitas, dan gangguan metabolisme. Kondisi-kondisi tersebut dapat menjadi faktor risiko penyakit ginjal apabila berlangsung dalam jangka panjang. Orang dewasa umumnya dianjurkan tidur setidaknya tujuh jam setiap malam. Selain itu, menjaga jadwal tidur yang konsisten dan membatasi penggunaan perangkat elektronik menjelang tidur dapat membantu meningkatkan kualitas istirahat.",
+        reference: "CDC - About Sleep; National Kidney Foundation - Kidney Health"
+      }
+    ];
+
+    // 6. DATA HEALTH CORNER (ARTIKEL, INFOGRAFIS, FAQ)
+    const ARTICLES_DATA = [
+      {
+        id: "art-01",
+        title: "5 Fakta Menarik tentang Urine dan Proses BAK yang Jarang Diketahui",
+        category: "Urine & BAK",
+        thumbnail: "droplets",
+        summary: "Pernah memperhatikan warna urine atau frekuensi buang air kecilmu? Ternyata, ada banyak fakta menarik tentang urine dan BAK yang jarang diketahui. Mulai dari perubahan warna urine, bakteri tanpa gejala, hingga kapasitas kandung kemih. Yuk, kenali lebih jauh agar kamu bisa lebih memahami kesehatan sistem urinariamu!",
+        content: [
+          "Buang air kecil merupakan aktivitas yang kita lakukan setiap hari. Namun, pernahkah kamu memperhatikan bahwa warna urine bisa berubah atau bertanya-tanya mengapa terkadang kamu lebih sering BAK setelah minum kopi? Ternyata, urine bukan sekadar cairan sisa metabolisme. Ada banyak hal menarik di balik proses pembentukannya yang berkaitan erat dengan kesehatan tubuh. Yuk, kenali beberapa fakta berikut!",
+          "1. Mengapa Urine Pagi Hari Lebih Kuning?",
+          "Pernah memperhatikan urine pertama setelah bangun tidur terlihat lebih kuning dibandingkan biasanya? Hal ini sebenarnya merupakan kondisi yang umum terjadi. Saat tidur, tubuh tidak mendapatkan asupan cairan selama beberapa jam. Namun, ginjal tetap bekerja menghasilkan urine. Untuk mempertahankan keseimbangan cairan, tubuh meningkatkan penyerapan kembali air di ginjal sehingga urine menjadi lebih pekat dan warnanya terlihat lebih kuning. Warna urine dapat menjadi salah satu petunjuk untuk memperkirakan kondisi hidrasi tubuh. Meskipun demikian, warna urine tidak bisa dijadikan satu-satunya penentu karena dapat dipengaruhi oleh makanan, vitamin, obat-obatan, dan kondisi kesehatan.",
+          "2. Ada Bakteri dalam Urine, tetapi Belum Tentu Terkena ISK",
+          "Banyak orang menganggap bahwa ditemukannya bakteri dalam urine pasti menandakan infeksi saluran kemih (ISK). Padahal, ada kondisi yang disebut asymptomatic bacteriuria, yaitu ditemukannya bakteri dalam urine tanpa disertai gejala infeksi saluran kemih. Kondisi ini dapat ditemukan pada beberapa kelompok masyarakat, termasuk perempuan sehat dan lansia. Pada sebagian besar orang yang tidak memiliki gejala, kondisi tersebut tidak membutuhkan pengobatan antibiotik. Penggunaan antibiotik yang tidak tepat justru dapat meningkatkan risiko resistensi antibiotik, yaitu keadaan ketika bakteri menjadi lebih sulit diatasi dengan obat antibiotik.",
+          "3. Kandung Kemih Bisa Menyimpan Sekitar Setengah Liter Urine",
+          "Kandung kemih bukan sekadar tempat penampungan urine, tetapi merupakan organ berotot yang mampu meregang ketika urine mulai terkumpul. Kemampuan ini didukung oleh otot detrusor yang membentuk dinding kandung kemih. Ketika volume urine bertambah, dinding kandung kemih mengalami peregangan. Reseptor khusus kemudian mengirimkan sinyal melalui sistem saraf menuju otak sehingga muncul sensasi ingin buang air kecil. Pada orang dewasa, kapasitas kandung kemih umumnya dapat mencapai sekitar 400–500 mL, meskipun kapasitas dan sensasi ingin BAK dapat berbeda pada setiap orang. Proses ini menunjukkan bahwa buang air kecil tidak hanya melibatkan kandung kemih, tetapi juga membutuhkan koordinasi antara otot, sistem saraf, dan otak.",
+          "4. Urine Berwarna Merah Belum Tentu karena Darah",
+          "Melihat urine berwarna kemerahan mungkin membuat seseorang langsung khawatir. Namun, ternyata beberapa jenis makanan juga dapat menyebabkan perubahan warna urine. Salah satu contohnya adalah buah bit yang mengandung pigmen alami sehingga dapat membuat urine terlihat kemerahan atau merah muda pada sebagian orang. Selain makanan, beberapa obat-obatan dan vitamin juga dapat mengubah warna urine. Meskipun demikian, urine berwarna merah juga dapat menjadi tanda hematuria, yaitu kondisi ketika terdapat darah dalam urine. Hematuria dapat berkaitan dengan infeksi, batu saluran kemih, maupun gangguan lainnya. Oleh karena itu, jangan langsung menganggap perubahan warna urine sebagai akibat makanan.",
+          "5. Sering BAK Tidak Selalu Berarti Ginjalmu Sehat!",
+          "Sebagian orang menganggap bahwa semakin sering buang air kecil, semakin baik pula kerja ginjalnya. Padahal, anggapan tersebut tidak sepenuhnya benar. Frekuensi BAK dipengaruhi oleh berbagai faktor, seperti jumlah air yang diminum, konsumsi kopi atau teh, aktivitas fisik, dan kondisi kesehatan seseorang. Sebagai contoh, kafein dalam kopi dan teh dapat meningkatkan produksi urine sehingga seseorang mungkin lebih sering buang air kecil setelah mengonsumsinya. Namun, jika frekuensi BAK meningkat secara tiba-tiba, terutama disertai rasa haus berlebihan, nyeri saat BAK, atau sering terbangun pada malam hari, kondisi tersebut perlu diperhatikan karena dapat berkaitan dengan gangguan kesehatan tertentu.",
+          "Urine dan kebiasaan BAK dapat memberikan berbagai petunjuk mengenai kondisi tubuh. Mulai dari warna urine hingga perubahan frekuensi berkemih, semuanya merupakan hal sederhana yang patut diperhatikan. Jadi, jangan abaikan perubahan yang terjadi pada tubuhmu. Kenali kebiasaan BAK-mu dan mulai jaga kesehatan sistem urinaria dari hal-hal kecil!"
+        ],
+        reference: "Kostelnik, S. B., et al. (2021). Journal of the American College of Nutrition, 40(2), 172-179; Nicolle, L. E., et al. (2019). Clinical Infectious Diseases, 68(10), e83-e110; StatPearls Publishing. Physiology, Urination. NCBI Bookshelf; NIDDK. Hematuria (Blood in the Urine); Hashim, H., & Abrams, P. (2011). Int J Clin Pract, 65(10), 1026-1036.",
+        dateUpdated: "2026-11-26"
+      },
+      {
+        id: "art-02",
+        title: "Cara Sederhana Menjaga Kesehatan Kandung Kemih",
+        category: "Bladder Health",
+        thumbnail: "pocket",
+        summary: "Kandung kemih memiliki peran penting dalam menyimpan dan mengeluarkan urine. Yuk, kenali cara menjaga kesehatan kandung kemih melalui kebiasaan sederhana, mulai dari mencukupi kebutuhan cairan, tidak menahan BAK terlalu lama, hingga mengenali tanda-tanda gangguan kandung kemih!",
+        content: [
+          "Kandung kemih atau urinary bladder merupakan organ penting dalam sistem urinaria yang berfungsi menampung urine sementara sebelum dikeluarkan melalui uretra. Meskipun sering dianggap sepele, kesehatan kandung kemih berperan penting dalam menjaga kenyamanan dan kualitas hidup sehari-hari. Gangguan pada organ ini dapat menyebabkan berbagai keluhan, seperti sering buang air kecil, nyeri saat BAK, hingga kesulitan menahan urine.",
+          "Salah satu cara sederhana menjaga kesehatan kandung kemih adalah dengan mencukupi kebutuhan cairan. Minum air yang cukup membantu tubuh mempertahankan keseimbangan cairan dan mendukung proses pembentukan urine. Selain itu, kebiasaan menahan buang air kecil terlalu lama sebaiknya dihindari. Menunda BAK secara berulang dapat mengganggu kebiasaan berkemih dan berpotensi menimbulkan ketidaknyamanan pada kandung kemih.",
+          "Pola konsumsi sehari-hari juga dapat memengaruhi kesehatan kandung kemih. Minuman berkafein seperti kopi dan teh, serta minuman beralkohol, dapat meningkatkan produksi urine atau memperburuk keluhan urgensi dan frekuensi BAK pada sebagian orang. Oleh karena itu, jika kamu sering merasa ingin BAK atau sulit menahan urine, cobalah memperhatikan jenis minuman yang dikonsumsi dan apakah terdapat hubungan dengan munculnya keluhan tersebut.",
+          "Selain menjaga asupan cairan dan pola berkemih, penting juga untuk memperhatikan kebiasaan hidup sehat. Menjaga berat badan ideal, melakukan aktivitas fisik secara teratur, serta mengonsumsi makanan bergizi dapat membantu menjaga fungsi tubuh secara keseluruhan. Latihan otot dasar panggul atau pelvic floor muscle training juga dapat membantu meningkatkan kemampuan mengendalikan keluarnya urine, terutama pada orang yang mengalami inkontinensia urine.",
+          "Jangan abaikan perubahan kebiasaan BAK, seperti nyeri saat berkemih, urine berdarah, sering terbangun pada malam hari untuk BAK, atau kesulitan mengeluarkan urine. Keluhan tersebut dapat menjadi tanda adanya gangguan pada kandung kemih maupun saluran kemih lainnya. Dengan mengenali perubahan sejak dini dan menerapkan kebiasaan sehat, kamu dapat membantu menjaga kesehatan kandung kemih dalam jangka panjang. Ingat, kandung kemih yang sehat dimulai dari kebiasaan sederhana setiap hari!"
+        ],
+        reference: "NIDDK (Bladder Health); European Association of Urology (EAU) Guidelines on Non-neurogenic Female LUTS; Hashim, H., & Abrams, P. (2011). Int J Clin Pract, 65(10), 1026-1036.",
+        dateUpdated: "2026-11-26"
+      },
+      {
+        id: "art-03",
+        title: "Kenali Cara Menjaga Kesehatan Ginjal Sejak Dini",
+        category: "Kidney Health",
+        thumbnail: "bean",
+        summary: "Ginjal bekerja setiap hari untuk menyaring darah, membuang zat sisa, dan menjaga keseimbangan cairan tubuh. Namun, gangguan ginjal sering kali tidak menunjukkan gejala pada tahap awal. Yuk, kenali cara menjaga kesehatan ginjal melalui kebiasaan sederhana dan pentingnya pemeriksaan kesehatan secara berkala!",
+        content: [
+          "Ginjal merupakan salah satu organ penting dalam tubuh yang memiliki peran besar dalam menjaga keseimbangan kesehatan. Sepasang ginjal yang terletak di bagian belakang rongga perut ini berfungsi menyaring darah, membuang zat sisa metabolisme melalui urine, serta mengatur keseimbangan cairan dan elektrolit. Selain itu, ginjal juga membantu mengatur tekanan darah, memproduksi hormon yang berperan dalam pembentukan sel darah merah, dan menjaga kesehatan tulang. Karena memiliki banyak fungsi penting, menjaga kesehatan ginjal merupakan hal yang tidak boleh diabaikan.",
+          "Salah satu kebiasaan sederhana untuk menjaga kesehatan ginjal adalah mencukupi kebutuhan cairan tubuh. Air membantu ginjal membuang zat sisa metabolisme melalui urine dan mempertahankan keseimbangan cairan tubuh. Namun, kebutuhan cairan setiap orang dapat berbeda, tergantung aktivitas, kondisi kesehatan, usia, dan lingkungan. Minum air secara cukup dan teratur lebih dianjurkan daripada memaksakan diri mengonsumsi air dalam jumlah berlebihan. Bagi orang yang memiliki gangguan ginjal tertentu, jumlah cairan yang dikonsumsi bahkan mungkin perlu dibatasi sesuai anjuran dokter.",
+          "Selain menjaga asupan cairan, memperhatikan pola makan juga penting untuk kesehatan ginjal. Konsumsi makanan tinggi garam secara berlebihan dapat meningkatkan tekanan darah, sedangkan tekanan darah tinggi merupakan salah satu faktor risiko kerusakan ginjal. Oleh karena itu, cobalah membatasi makanan tinggi natrium seperti mi instan, makanan olahan, keripik, dan makanan cepat saji. Perbanyak konsumsi buah, sayuran, serta makanan bergizi seimbang untuk membantu menjaga kesehatan tubuh secara keseluruhan.",
+          "Kebiasaan lain yang perlu diperhatikan adalah penggunaan obat-obatan, terutama obat pereda nyeri golongan Non-Steroidal Anti-Inflammatory Drugs (NSAID), seperti ibuprofen dan asam mefenamat. Penggunaan obat tersebut secara berlebihan atau dalam jangka panjang tanpa pengawasan medis dapat mengganggu aliran darah menuju ginjal dan meningkatkan risiko kerusakan ginjal. Oleh karena itu, hindari mengonsumsi obat sembarangan dan selalu ikuti aturan penggunaan maupun anjuran tenaga medis.",
+          "Menariknya, gangguan ginjal sering kali tidak menunjukkan gejala pada tahap awal. Seseorang dapat mengalami penurunan fungsi ginjal tanpa merasakan keluhan yang jelas. Ketika kondisi semakin berkembang, beberapa tanda yang mungkin muncul antara lain pembengkakan pada kaki atau sekitar mata, perubahan frekuensi BAK, urine berbusa yang menetap, mudah lelah, serta tekanan darah yang meningkat. Karena itu, pemeriksaan fungsi ginjal melalui tes darah seperti kreatinin dan estimasi laju filtrasi glomerulus (estimated Glomerular Filtration Rate/eGFR), serta pemeriksaan urine untuk melihat albumin, dapat membantu mendeteksi gangguan ginjal lebih awal.",
+          "Risiko penyakit ginjal juga dapat meningkat pada orang dengan diabetes, tekanan darah tinggi, obesitas, atau riwayat keluarga dengan penyakit ginjal. Bagi kelompok tersebut, pemeriksaan kesehatan secara berkala menjadi sangat penting meskipun belum merasakan gejala apa pun. Deteksi dini memungkinkan gangguan ginjal diketahui lebih cepat sehingga penanganan dapat dilakukan sebelum kerusakan berkembang lebih jauh.",
+          "Menjaga kesehatan ginjal tidak harus dimulai dengan perubahan besar. Cukupi kebutuhan cairan, batasi konsumsi garam, konsumsi makanan bergizi seimbang, rutin beraktivitas fisik, jaga tekanan darah dan kadar gula darah, serta hindari penggunaan obat tanpa indikasi yang jelas. Ingat, ginjal bekerja setiap hari untuk menjaga tubuh tetap berfungsi dengan baik. Jadi, jangan tunggu sampai muncul keluhan untuk mulai peduli terhadap kesehatan ginjalmu!"
+        ],
+        reference: "NIDDK (Keeping Kidneys Safe); National Kidney Foundation (How Your Kidneys Work); KDIGO (2024) Clinical Practice Guideline for CKD; WHO (Reducing Salt Intake).",
+        dateUpdated: "2026-11-26"
+      }
+    ];
+
+    const INFOGRAPHICS_DATA = [
+      {
+        id: "inf-01",
+        title: "Panduan Warna Urine & Tingkat Hidrasi Tubuh",
+        subtitle: "Kenali sinyal kebutuhan cairan tubuhmu dari warna urine saat BAK.",
+        category: "Urine & BAK",
+        visualType: "urine-chart",
+        items: [
+          {
+            colorHex: "#FEF9C3",
+            borderHex: "#FDE047",
+            label: "Kuning Pucat / Bening",
+            status: "Terhidrasi Optimal",
+            statusColor: "bg-emerald-100 text-emerald-800",
+            desc: "Tubuhmu mendapatkan cukup cairan. Pertahankan pola minum air putih secara bertahap sepanjang hari."
+          },
+          {
+            colorHex: "#FDE047",
+            borderHex: "#EAB308",
+            label: "Kuning Cerah / Transparan",
+            status: "Normal & Sehat",
+            statusColor: "bg-emerald-100 text-emerald-800",
+            desc: "Kondisi hidrasi masih dalam batas normal. Tetap minum air putih secara rutin terutama setelah beraktivitas."
+          },
+          {
+            colorHex: "#F59E0B",
+            borderHex: "#D97706",
+            label: "Kuning Tua / Pekat",
+            status: "Mulai Kekurangan Cairan",
+            statusColor: "bg-amber-100 text-amber-800",
+            desc: "Tanda awal dehidrasi ringan. Segera minum 1–2 gelas air putih untuk membantu kerja ginjal menyaring sisa metabolisme."
+          },
+          {
+            colorHex: "#B45309",
+            borderHex: "#78350F",
+            label: "Oranye Gelap / Kecokelatan",
+            status: "Dehidrasi / Perlu Evaluasi",
+            statusColor: "bg-rose-100 text-rose-800",
+            desc: "Bisa menandakan dehidrasi berat, pengaruh obat/makanan tertentu, atau gangguan fungsi hati/saluran kemih. Segera perbanyak minum dan konsultasikan ke dokter jika menetap."
+          }
+        ],
+        reference: "Kemenkes RI & European Association of Urology (EAU) Patient Information"
+      },
+      {
+        id: "inf-02",
+        title: "5 Kebiasaan Emas Menjaga Kesehatan Ginjal & Kandung Kemih",
+        subtitle: "Langkah sederhana sehari-hari untuk mencegah infeksi saluran kemih (ISK) & batu ginjal.",
+        category: "Kidney Health",
+        visualType: "steps-diagram",
+        items: [
+          {
+            icon: "glass-water",
+            step: "01",
+            label: "Cukupi Kebutuhan Air Putih",
+            desc: "Minum sekitar 8 gelas (±2 liter) per hari atau sesuaikan dengan aktivitas fisik dan cuaca."
+          },
+          {
+            icon: "clock",
+            step: "02",
+            label: "Jangan Menahan Buang Air Kecil",
+            desc: "Menahan BAK terlalu lama memicu pertumbuhan bakteri di kandung kemih dan meningkatkan risiko ISK."
+          },
+          {
+            icon: "sparkles",
+            step: "03",
+            label: "Membasuh dari Depan ke Belakang",
+            desc: "Setelah BAK/BAB, selalu bersihkan area intim dari arah depan ke belakang untuk mencegah perpindahan bakteri dari anus."
+          },
+          {
+            icon: "utensils",
+            step: "04",
+            label: "Batasi Garam & Minuman Manis Berlebih",
+            desc: "Konsumsi natrium dan gula tinggi secara terus-menerus dapat memperberat kerja penyaringan ginjal."
+          },
+          {
+            icon: "shield-alert",
+            step: "05",
+            label: "Waspadai Gejala Dini (Nyeri / Anyang-anyangan)",
+            desc: "Jika BAK terasa perih, keruh, berdarah, atau disertai nyeri pinggang dan demam, segera periksakan diri ke fasilitas kesehatan."
+          }
+        ],
+        reference: "World Kidney Day & Ikatan Ahli Urologi Indonesia (IAUI)"
+      },
+      {
+        id: "inf-03",
+        title: "Anatomi Singkat Sistem Saluran Kemih (Genitourinari)",
+        subtitle: "Bagaimana tubuh memproses cairan hingga menjadi urine?",
+        category: "Bladder Health",
+        visualType: "anatomy-flow",
+        items: [
+          {
+            organ: "1. Ginjal (Kidneys)",
+            role: "Penyaring Utama",
+            desc: "Sepasang organ berbentuk kacang yang menyaring limbah dan kelebihan cairan dari darah untuk membentuk urine."
+          },
+          {
+            organ: "2. Ureter",
+            role: "Saluran Penghubung",
+            desc: "Dua saluran tipis yang mengalirkan urine secara bertahap dari masing-masing ginjal menuju kandung kemih."
+          },
+          {
+            organ: "3. Kandung Kemih (Bladder)",
+            role: "Tempat Penampungan",
+            desc: "Organ berotot elastis yang menampung urine sementara (kapasitas normal ±300–500 ml) sebelum dikeluarkan."
+          },
+          {
+            organ: "4. Uretra",
+            role: "Saluran Pembuangan",
+            desc: "Saluran akhir yang membawa urine keluar dari tubuh saat otot kandung kemih berkontraksi."
+          }
+        ],
+        reference: "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)"
+      }
+    ];
+
+    const FAQ_DATA = [
+      {
+        id: "faq-01",
+        category: "Urine & BAK",
+        question: "Mengapa warna urine bisa berubah-ubah?",
+        answer: "Warna urine dapat berubah karena jumlah cairan yang diminum, makanan, vitamin, obat-obatan, atau kondisi kesehatan tertentu.",
+        reference: "MedlinePlus – Urine: Abnormal Color"
+      },
+      {
+        id: "faq-02",
+        category: "Urine & BAK",
+        question: "Apakah urine berwarna kuning pekat menandakan kurang minum?",
+        answer: "Bisa jadi. Urine berwarna kuning pekat dapat menunjukkan urine lebih terkonsentrasi akibat kurangnya asupan cairan.",
+        reference: "MedlinePlus – Urine: Abnormal Color"
+      },
+      {
+        id: "faq-03",
+        category: "Urine & BAK",
+        question: "Berapa kali normalnya seseorang buang air kecil dalam sehari?",
+        answer: "Umumnya sekitar 4–8 kali sehari, tetapi frekuensinya dapat berbeda tergantung asupan cairan, aktivitas, dan kondisi tubuh.",
+        reference: "NIDDK – The Urinary Tract & How It Works"
+      },
+      {
+        id: "faq-04",
+        category: "Kidney Health",
+        question: "Apakah kurang minum air putih dapat memengaruhi kesehatan ginjal?",
+        answer: "Ya. Kurang cairan dapat menyebabkan dehidrasi dan meningkatkan risiko terbentuknya batu ginjal, terutama jika volume urine menjadi rendah.",
+        reference: "National Kidney Foundation – Kidney Stone Prevention"
+      },
+      {
+        id: "faq-05",
+        category: "Kidney Health",
+        question: "Apakah penyakit ginjal selalu menimbulkan gejala?",
+        answer: "Tidak. Penyakit ginjal tahap awal sering kali tidak menunjukkan gejala sehingga pemeriksaan darah dan urine dapat membantu mendeteksinya.",
+        reference: "NIDDK – What Is Chronic Kidney Disease in Adults?"
+      },
+      {
+        id: "faq-06",
+        category: "Kidney Health",
+        question: "Apakah urine berbusa merupakan tanda penyakit ginjal?",
+        answer: "Tidak selalu. Namun, urine berbusa yang menetap dapat menjadi tanda adanya protein dalam urine, yang perlu diperiksa lebih lanjut.",
+        reference: "NIDDK – Glomerular Disease"
+      },
+      {
+        id: "faq-07",
+        category: "Bladder Health",
+        question: "Apakah menahan buang air kecil terlalu lama berbahaya?",
+        answer: "Jika sering dilakukan, kebiasaan ini dapat mengganggu fungsi kandung kemih dan meningkatkan risiko infeksi saluran kemih.",
+        reference: "NIDDK – The Urinary Tract & How It Works"
+      },
+      {
+        id: "faq-08",
+        category: "Bladder Health",
+        question: "Apakah kandung kemih bisa menjadi terlalu aktif?",
+        answer: "Ya. Kondisi ini disebut overactive bladder, yaitu gangguan yang menyebabkan dorongan buang air kecil muncul secara tiba-tiba dan sulit ditahan.",
+        reference: "NIDDK – Definition & Facts for Bladder Control Problems"
+      },
+      {
+        id: "faq-09",
+        category: "Bladder Health",
+        question: "Apakah kapasitas kandung kemih setiap orang sama?",
+        answer: "Tidak. Kapasitas kandung kemih dapat berbeda pada setiap orang dan dipengaruhi oleh usia serta kondisi tubuh.",
+        reference: "MedlinePlus – Urine and Urination"
+      },
+      {
+        id: "faq-10",
+        category: "Urinary Problems",
+        question: "Mengapa terasa perih saat buang air kecil?",
+        answer: "Rasa perih saat buang air kecil dapat disebabkan oleh infeksi saluran kemih atau iritasi pada saluran kemih.",
+        reference: "NHS – Urinary Tract Infections (UTIs)"
+      },
+      {
+        id: "faq-11",
+        category: "Urinary Problems",
+        question: "Apakah urine berdarah selalu menandakan penyakit serius?",
+        answer: "Tidak selalu, tetapi darah dalam urine bukan kondisi normal dan perlu diperiksakan ke dokter meskipun hanya terjadi sekali.",
+        reference: "MedlinePlus – Urine: Abnormal Color"
+      },
+      {
+        id: "faq-12",
+        category: "Urinary Problems",
+        question: "Mengapa masih terasa ingin buang air kecil setelah selesai BAK?",
+        answer: "Hal ini dapat terjadi karena kandung kemih belum kosong sepenuhnya atau terdapat gangguan pada proses pengeluaran urine.",
+        reference: "MedlinePlus – Urine and Urination"
+      },
+      {
+        id: "faq-13",
+        category: "Daily Habits",
+        question: "Apakah minum air putih yang cukup membantu menjaga kesehatan saluran kemih?",
+        answer: "Ya. Minum air yang cukup membantu menjaga produksi urine dan mendukung proses pembuangan zat sisa dari tubuh.",
+        reference: "NIDDK – The Urinary Tract & How It Works"
+      },
+      {
+        id: "faq-14",
+        category: "Daily Habits",
+        question: "Apakah membersihkan area genital dengan benar dapat membantu mencegah infeksi saluran kemih?",
+        answer: "Ya. Menjaga kebersihan area genital dan membersihkan dari arah depan ke belakang setelah BAK atau BAB dapat membantu mengurangi risiko masuknya bakteri ke saluran kemih.",
+        reference: "NHS – Urinary Tract Infections (UTIs)"
+      },
+      {
+        id: "faq-15",
+        category: "Daily Habits",
+        question: "Apakah kebiasaan menahan buang air kecil perlu dihindari?",
+        answer: "Ya. Sebaiknya segera buang air kecil ketika muncul dorongan dan tidak membiasakan diri menahannya terlalu lama.",
+        reference: "NIDDK – The Urinary Tract & How It Works"
+      }
+    ];
+
+    /**
+     * =========================================================================
+     * BAGIAN B: PENYIMPANAN LOKAL PERSISTEN (OFFLINE STORAGE ENGINE)
+     * Menggunakan localStorage agar seluruh data, bookmark, riwayat kuis,
+     * dan progres belajar tetap tersimpan meski aplikasi ditutup.
+     * =========================================================================
+     */
+    const STORAGE_KEY = 'toilet_talk_user_data_v1';
+
+    const DEFAULT_USER_STATE = {
+      hasSeenWelcome: false,
+      bookmarks: [],          // Array ID Myth vs Fact yang disimpan
+      quizHistory: [],        // Array { date, category, score, total }
+      completedScenarios: [], // Array ID Scenario yang sudah diselesaikan
+      readArticles: []        // Array ID Artikel yang sudah dibaca
+    };
+
+    let userState = loadUserState();
+
+    function loadUserState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return { ...DEFAULT_USER_STATE };
+        return { ...DEFAULT_USER_STATE, ...JSON.parse(raw) };
+      } catch (err) {
+        console.error("Gagal membaca localStorage:", err);
+        return { ...DEFAULT_USER_STATE };
+      }
+    }
+
+    function saveUserState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(userState));
+        updateHomeProgressUI();
+      } catch (err) {
+        console.error("Gagal menyimpan ke localStorage:", err);
+      }
+    }
+
+    /**
+     * =========================================================================
+     * BAGIAN C: NAVIGASI, SPLASH SCREEN & WELCOME FLOW
+     * =========================================================================
+     */
+    let currentTab = 'home';
+    let currentFactIndex = 0;
+
+    window.addEventListener('DOMContentLoaded', () => {
+  try {
+    safeRenderIcons();
+    initHomeContent();
+    initMythCategories();
+    renderMythList();
+    renderQuizCategorySelector();
+    renderScenarioList();
+    renderCornerContent();
+    updateHomeProgressUI();
+  } catch (err) {
+    console.error("Init error:", err);
+  } finally {
+    setTimeout(() => {
+      const splash = document.getElementById('splash-screen');
+      if (splash) {
+        splash.classList.add('opacity-0');
+        setTimeout(() => {
+          splash.classList.add('hidden');
+          if (!userState.hasSeenWelcome) {
+            document.getElementById('welcome-screen').classList.remove('hidden');
+          }
+          safeRenderIcons();
+        }, 400);
+      }
+    }, 1200);
+  }
+});
+
+    function enterMainApp() {
+      userState.hasSeenWelcome = true;
+      saveUserState();
+      document.getElementById('welcome-screen').classList.add('hidden');
+    }
+
+    function showWelcomeAgain() {
+      document.getElementById('welcome-screen').classList.remove('hidden');
+    }
+
+    function switchTab(tabName) {
+      currentTab = tabName;
+
+      // Sembunyikan semua section
+      const sections = ['home', 'myth', 'quiz', 'scenario', 'corner'];
+      sections.forEach(sec => {
+        document.getElementById(`view-${sec}`).classList.add('hidden');
+        const navBtn = document.getElementById(`nav-${sec}`);
+        navBtn.classList.remove('text-brand-600');
+        navBtn.classList.add('text-slate-400');
+        navBtn.querySelector('span').classList.remove('font-bold');
+        navBtn.querySelector('span').classList.add('font-medium');
+      });
+
+      // Tampilkan section aktif
+      document.getElementById(`view-${tabName}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`nav-${tabName}`);
+      activeBtn.classList.remove('text-slate-400');
+      activeBtn.classList.add('text-brand-600');
+      activeBtn.querySelector('span').classList.remove('font-medium');
+      activeBtn.querySelector('span').classList.add('font-bold');
+
+      // Scroll ke atas
+      document.getElementById('main-content').scrollTop = 0;
+      safeRenderIcons();
+    }
+
+    /**
+     * =========================================================================
+     * BAGIAN D: LOGIKA MENU 1 - HOME & LEARNING PROGRESS
+     * =========================================================================
+     */
+    function initHomeContent() {
+      document.getElementById('daily-fact-text').textContent = DAILY_FACTS[0];
+      if (ARTICLES_DATA.length > 0) {
+        document.getElementById('featured-topic-title').textContent = ARTICLES_DATA[0].title;
+        document.getElementById('featured-topic-desc').textContent = ARTICLES_DATA[0].summary;
+      }
+    }
+
+    function rotateDailyFact() {
+      currentFactIndex = (currentFactIndex + 1) % DAILY_FACTS.length;
+      document.getElementById('daily-fact-text').textContent = DAILY_FACTS[currentFactIndex];
+    }
+
+    function openFeaturedArticle() {
+      if (ARTICLES_DATA.length > 0) {
+        openArticleDetail(ARTICLES_DATA[0].id);
+      }
+    }
+
+    function updateHomeProgressUI() {
+      const quizCount = userState.quizHistory.length;
+      const scenarioCount = userState.completedScenarios.length;
+      const bookmarkCount = userState.bookmarks.length;
+      const readCount = userState.readArticles.length;
+
+      document.getElementById('stat-quiz-count').textContent = quizCount;
+      document.getElementById('stat-scenario-count').textContent = `${scenarioCount}/${SCENARIO_DATA.length}`;
+      document.getElementById('stat-bookmark-count').textContent = bookmarkCount;
+
+      // Kalkulasi persentase progres belajar keseluruhan
+      const totalTarget = SCENARIO_DATA.length + ARTICLES_DATA.length + 3; // target minimal 3 kuis
+      const currentAchieved = Math.min(scenarioCount, SCENARIO_DATA.length) +
+                              Math.min(readCount, ARTICLES_DATA.length) +
+                              Math.min(quizCount, 3);
+      const percent = totalTarget > 0 ? Math.round((currentAchieved / totalTarget) * 100) : 0;
+
+      document.getElementById('home-progress-percent').textContent = `${percent}%`;
+      document.getElementById('home-progress-bar').style.width = `${percent}%`;
+    }
+
+    /**
+     * =========================================================================
+     * BAGIAN E: LOGIKA MENU 2 - MYTH VS FACT & BOOKMARK
+     * =========================================================================
+     */
+    let selectedMythCategory = "Semua";
+    let onlyBookmarkedMyths = false;
+
+    function initMythCategories() {
+      const container = document.getElementById('myth-categories');
+      container.innerHTML = CATEGORIES.map(cat => `
+        <button onclick="selectMythCategory('${cat}')"
+          class="myth-cat-btn shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+            cat === selectedMythCategory
+              ? 'bg-brand-600 text-white shadow-xs'
+              : 'bg-white text-slate-600 border border-slate-200 hover:border-brand-300'
+          }">
+          ${cat}
+        </button>
+      `).join('');
+    }
+
+    function selectMythCategory(cat) {
+      selectedMythCategory = cat;
+      initMythCategories();
+      renderMythList();
+    }
+
+    function toggleMythBookmarkFilter() {
+      onlyBookmarkedMyths = !onlyBookmarkedMyths;
+      const btn = document.getElementById('myth-bookmark-filter');
+      if (onlyBookmarkedMyths) {
+        btn.classList.add('bg-brand-50', 'border-brand-500', 'text-brand-700');
+      } else {
+        btn.classList.remove('bg-brand-50', 'border-brand-500', 'text-brand-700');
+      }
+      renderMythList();
+    }
+
+    function toggleBookmark(id) {
+      const idx = userState.bookmarks.indexOf(id);
+      if (idx === -1) {
+        userState.bookmarks.push(id);
+      } else {
+        userState.bookmarks.splice(idx, 1);
+      }
+      saveUserState();
+      renderMythList();
+    }
+
+    function getVerdictBadgeStyle(verdict) {
+      if (verdict === "Fakta") return "bg-emerald-100 text-emerald-800 border-emerald-200";
+      if (verdict === "Mitos") return "bg-rose-100 text-rose-800 border-rose-200";
+      return "bg-amber-100 text-amber-800 border-amber-200"; // Perlu Konteks
+    }
+
+    function renderMythList() {
+      const keyword = document.getElementById('myth-search').value.toLowerCase();
+      const container = document.getElementById('myth-list');
+
+      const filtered = MYTH_FACT_DATA.filter(item => {
+        const matchCat = selectedMythCategory === "Semua" || item.category === selectedMythCategory;
+        const matchBookmark = !onlyBookmarkedMyths || userState.bookmarks.includes(item.id);
+        const matchSearch = item.title.toLowerCase().includes(keyword) ||
+                            item.statement.toLowerCase().includes(keyword) ||
+                            item.explanation.toLowerCase().includes(keyword);
+        return matchCat && matchBookmark && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="p-8 text-center bg-white rounded-3xl border border-slate-100">
+            <p class="text-xs font-semibold text-slate-500">Tidak ada item Mitos vs Fakta yang cocok dengan pencarianmu.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => {
+        const isBookmarked = userState.bookmarks.includes(item.id);
+        const badgeStyle = getVerdictBadgeStyle(item.verdict);
+
+        return `
+          <div class="p-4 rounded-3xl bg-white border border-slate-100 shadow-sm space-y-3">
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${badgeStyle}">
+                  ${item.verdict.toUpperCase()}
+                </span>
+                <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">
+                  ${item.category}
+                </span>
+              </div>
+              <button onclick="toggleBookmark('${item.id}')" class="p-1.5 rounded-xl hover:bg-slate-50 transition-colors ${isBookmarked ? 'text-brand-600' : 'text-slate-400'}" title="Simpan">
+                <i data-lucide="bookmark" class="w-4 h-4 ${isBookmarked ? 'fill-brand-600' : ''}"></i>
+              </button>
+            </div>
+
+            <div>
+              <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">${item.title}</p>
+              <h3 class="text-sm font-bold text-slate-900 mt-0.5 leading-snug">"${item.statement}"</h3>
+            </div>
+
+            <div class="p-3 rounded-2xl bg-slate-50 text-xs text-slate-700 leading-relaxed">
+              <span class="font-bold text-slate-900">Penjelasan: </span>${item.explanation}
+            </div>
+
+            <div class="flex items-center justify-between text-[10px] text-slate-400 pt-1">
+              <span>Ref: ${item.reference}</span>
+              <span>Update: ${item.dateUpdated}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      safeRenderIcons();
+    }
+
+    /**
+     * =========================================================================
+     * BAGIAN F: LOGIKA MENU 3 - MINI QUIZ INTERAKTIF & RIWAYAT SKOR
+     * =========================================================================
+     */
+    let activeQuizQuestions = [];
+    let currentQuestionIndex = 0;
+    let currentQuizScore = 0;
+    let currentQuizCategory = "";
+    let hasAnsweredCurrent = false;
+
+    function renderQuizCategorySelector() {
+      const container = document.getElementById('quiz-container');
+      const quizCategories = ["Semua Kategori", ...CATEGORIES.slice(1)];
+
+      container.innerHTML = `
+        <div class="p-5 rounded-3xl bg-white border border-slate-100 shadow-sm space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+              <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-sm font-extrabold text-slate-900">Pilih Topik Kuis</h3>
+              <p class="text-xs text-slate-500">Dapatkan umpan balik & penjelasan langsung di setiap soal.</p>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            ${quizCategories.map(cat => {
+              const count = cat === "Semua Kategori"
+                ? QUIZ_DATA.length
+                : QUIZ_DATA.filter(q => q.category === cat).length;
+              return `
+                <button onclick="startQuiz('${cat}')" class="w-full p-3.5 rounded-2xl bg-slate-50 hover:bg-brand-50 border border-slate-200/70 hover:border-brand-300 flex items-center justify-between transition-all text-left">
+                  <div>
+                    <p class="text-xs font-bold text-slate-800">${cat}</p>
+                    <p class="text-[10px] text-slate-500">${count} Pertanyaan tersedia</p>
+                  </div>
+                  <div class="w-8 h-8 rounded-xl bg-white text-brand-600 flex items-center justify-center shadow-xs">
+                    <i data-lucide="play" class="w-4 h-4"></i>
+                  </div>
+                </button>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+      safeRenderIcons();
+    }
+
+    function startQuiz(category) {
+      currentQuizCategory = category;
+      activeQuizQuestions = category === "Semua Kategori"
+        ? [...QUIZ_DATA]
+        : QUIZ_DATA.filter(q => q.category === category);
+
+      if (activeQuizQuestions.length === 0) {
+        renderQuizCategorySelector();
+        return;
+      }
+
+      currentQuestionIndex = 0;
+      currentQuizScore = 0;
+      hasAnsweredCurrent = false;
+      renderQuizQuestion();
+    }
+
+    function renderQuizQuestion() {
+      const container = document.getElementById('quiz-container');
+      const q = activeQuizQuestions[currentQuestionIndex];
+      const progress = Math.round(((currentQuestionIndex + 1) / activeQuizQuestions.length) * 100);
+
+      container.innerHTML = `
+        <div class="p-5 rounded-3xl bg-white border border-slate-100 shadow-sm space-y-4 animate-fade-in">
+          <!-- Header Soal -->
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-brand-600">Soal ${currentQuestionIndex + 1} dari ${activeQuizQuestions.length}</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">${q.difficulty} • ${q.category}</span>
+          </div>
+
+          <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+            <div class="h-full bg-brand-500 transition-all" style="width: ${progress}%"></div>
+          </div>
+
+          <!-- Pertanyaan -->
+          <h3 class="text-sm font-bold text-slate-900 leading-relaxed pt-1">
+            ${q.question}
+          </h3>
+
+          <!-- Pilihan Jawaban -->
+          <div class="space-y-2.5" id="quiz-options">
+            ${q.options.map((opt, idx) => `
+              <button onclick="selectQuizAnswer(${idx})" id="quiz-opt-${idx}" class="w-full p-3.5 rounded-2xl border border-slate-200 hover:border-brand-400 bg-white text-left text-xs font-medium text-slate-700 transition-all flex items-center gap-3">
+                <span class="w-6 h-6 rounded-lg bg-slate-100 text-slate-600 font-bold flex items-center justify-center shrink-0">
+                  ${String.fromCharCode(65 + idx)}
+                </span>
+                <span>${opt}</span>
+              </button>
+            `).join('')}
+          </div>
+
+          <!-- Area Feedback (Muncul setelah menjawab) -->
+          <div id="quiz-feedback" class="hidden p-4 rounded-2xl text-xs space-y-2"></div>
+
+          <!-- Tombol Lanjut -->
+          <div id="quiz-next-wrap" class="hidden pt-2">
+            <button onclick="nextQuizQuestion()" class="w-full py-3.5 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow-md transition-all">
+              ${currentQuestionIndex < activeQuizQuestions.length - 1 ? 'Pertanyaan Berikutnya' : 'Lihat Skor Akhir'}
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function selectQuizAnswer(selectedIndex) {
+      if (hasAnsweredCurrent) return;
+      hasAnsweredCurrent = true;
+
+      const q = activeQuizQuestions[currentQuestionIndex];
+      const isCorrect = selectedIndex === q.correctAnswer;
+      if (isCorrect) currentQuizScore++;
+
+      // Warnai opsi
+      q.options.forEach((_, idx) => {
+        const btn = document.getElementById(`quiz-opt-${idx}`);
+        btn.disabled = true;
+        if (idx === q.correctAnswer) {
+          btn.classList.remove('border-slate-200', 'bg-white');
+          btn.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900', 'font-bold');
+        } else if (idx === selectedIndex && !isCorrect) {
+          btn.classList.remove('border-slate-200', 'bg-white');
+          btn.classList.add('border-rose-400', 'bg-rose-50', 'text-rose-900');
+        }
+      });
+
+      // Tampilkan feedback & penjelasan
+      const feedbackBox = document.getElementById('quiz-feedback');
+      feedbackBox.classList.remove('hidden');
+      feedbackBox.classList.add(isCorrect ? 'bg-emerald-50' : 'bg-amber-50', isCorrect ? 'text-emerald-900' : 'text-amber-900');
+      feedbackBox.innerHTML = `
+        <p class="font-extrabold">${isCorrect ? '🎉 Jawabanmu Tepat!' : '💡 Kurang Tepat, Yuk Pelajari!'}</p>
+        <p class="leading-relaxed">${q.explanation}</p>
+        <p class="text-[10px] opacity-75 pt-1">Referensi: ${q.reference}</p>
+      `;
+
+      document.getElementById('quiz-next-wrap').classList.remove('hidden');
+    }
+
+    function nextQuizQuestion() {
+      if (currentQuestionIndex < activeQuizQuestions.length - 1) {
+        currentQuestionIndex++;
+        hasAnsweredCurrent = false;
+        renderQuizQuestion();
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function finishQuiz() {
+      const finalPercentage = Math.round((currentQuizScore / activeQuizQuestions.length) * 100);
+
+      // Simpan skor ke localStorage
+      userState.quizHistory.unshift({
+        date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }),
+        category: currentQuizCategory,
+        score: currentQuizScore,
+        total: activeQuizQuestions.length,
+        percentage: finalPercentage
+      });
+      saveUserState();
+
+      const container = document.getElementById('quiz-container');
+      container.innerHTML = `
+        <div class="p-6 rounded-3xl bg-white border border-slate-100 shadow-sm text-center space-y-4 animate-fade-in">
+          <div class="w-16 h-16 rounded-3xl bg-brand-100 text-brand-600 flex items-center justify-center mx-auto">
+            <i data-lucide="trophy" class="w-8 h-8"></i>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-brand-600 uppercase">Kuis Selesai!</p>
+            <h3 class="text-3xl font-extrabold text-slate-900 mt-1">${finalPercentage} Poin</h3>
+            <p class="text-xs text-slate-500 mt-1">Kamu menjawab benar ${currentQuizScore} dari ${activeQuizQuestions.length} soal (${currentQuizCategory}).</p>
+          </div>
+          <div class="pt-2 space-y-2">
+            <button onclick="renderQuizCategorySelector()" class="w-full py-3.5 rounded-2xl bg-brand-600 text-white font-bold text-xs shadow-md">
+              Pilih Topik Kuis Lain
+            </button>
+            <button onclick="toggleQuizHistoryModal()" class="w-full py-3 rounded-2xl bg-slate-100 text-slate-700 font-bold text-xs">
+              Lihat Riwayat Skor
+            </button>
+          </div>
+        </div>
+      `;
+      safeRenderIcons();
+    }
+
+    function toggleQuizHistoryModal() {
+      const badge = document.getElementById('modal-badge');
+      const body = document.getElementById('modal-body');
+      badge.textContent = "Riwayat Mini Quiz";
+
+      if (userState.quizHistory.length === 0) {
+        body.innerHTML = `<p class="text-xs text-slate-500 text-center py-6">Belum ada riwayat kuis. Yuk coba kerjakan kuis pertamamu!</p>`;
+      } else {
+        body.innerHTML = `
+          <div class="space-y-2.5">
+            ${userState.quizHistory.map(h => `
+              <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                <div>
+                  <p class="text-xs font-bold text-slate-800">${h.category}</p>
+                  <p class="text-[10px] text-slate-400">${h.date} • Benar ${h.score}/${h.total}</p>
+                </div>
+                <span class="px-3 py-1 rounded-xl bg-brand-100 text-brand-700 text-xs font-extrabold">
+                  ${h.percentage}%
+                </span>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      document.getElementById('detail-modal').classList.remove('hidden');
+    }
+
+    /**
+     * =========================================================================
+     * BAGIAN G: LOGIKA MENU 4 - TOILET TALK SCENARIO
+     * =========================================================================
+     */
+    function renderScenarioList() {
+      const container = document.getElementById('scenario-container');
+
+      container.innerHTML = SCENARIO_DATA.map((sc, index) => {
+        const isCompleted = userState.completedScenarios.includes(sc.id);
+        return `
+          <div class="p-4 rounded-3xl bg-white border border-slate-100 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded-full bg-brand-50 text-brand-700 text-[10px] font-bold">
+                ${sc.category}
+              </span>
+              ${isCompleted
+                ? `<span class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-600"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Selesai</span>`
+                : `<span class="text-[11px] font-medium text-slate-400">Belum dicoba</span>`
+              }
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-slate-900">Skenario #${index + 1}: ${sc.title}</h3>
+              <p class="text-xs text-slate-500 mt-1 line-clamp-2">${sc.description}</p>
+            </div>
+            <button onclick="openScenarioDetail('${sc.id}')" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs transition-colors">
+              ${isCompleted ? 'Ulangi Skenario' : 'Mulai Simulasi'}
+            </button>
+          </div>
+        `;
+      }).join('');
+
+      safeRenderIcons();
+    }
+
+    function openScenarioDetail(scenarioId) {
+      const sc = SCENARIO_DATA.find(item => item.id === scenarioId);
+      if (!sc) return;
+
+      const container = document.getElementById('scenario-container');
+      container.innerHTML = `
+        <div class="p-5 rounded-3xl bg-white border border-slate-100 shadow-sm space-y-4 animate-fade-in">
+          <button onclick="renderScenarioList()" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-slate-800">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali ke Daftar Skenario
+          </button>
+
+          <div class="p-4 rounded-2xl bg-brand-50/70 border border-brand-100 space-y-1.5">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-700">${sc.category}</span>
+            <h3 class="text-base font-extrabold text-slate-900">${sc.title}</h3>
+            <p class="text-xs text-slate-700 leading-relaxed pt-1">${sc.description}</p>
+          </div>
+
+          <p class="text-xs font-bold text-slate-800">Pilih tindakan yang paling tepat menurutmu:</p>
+
+          <div class="space-y-2.5">
+            ${sc.options.map((opt, idx) => `
+              <button onclick="selectScenarioOption('${sc.id}', ${idx})" id="sc-opt-${idx}" class="w-full p-3.5 rounded-2xl border border-slate-200 hover:border-brand-400 bg-white text-left text-xs font-medium text-slate-700 transition-all">
+                ${opt.text}
+              </button>
+            `).join('')}
+          </div>
+
+          <div id="scenario-feedback-area" class="hidden space-y-3 pt-2"></div>
+        </div>
+      `;
+      safeRenderIcons();
+    }
+
+    function selectScenarioOption(scenarioId, optionIdx) {
+      const sc = SCENARIO_DATA.find(item => item.id === scenarioId);
+      const chosen = sc.options[optionIdx];
+
+      // Tandai skenario selesai di localStorage
+      if (!userState.completedScenarios.includes(scenarioId)) {
+        userState.completedScenarios.push(scenarioId);
+        saveUserState();
+      }
+
+      // Highlight tombol terpilih
+      sc.options.forEach((opt, idx) => {
+        const btn = document.getElementById(`sc-opt-${idx}`);
+        btn.classList.remove('border-brand-500', 'bg-brand-50', 'border-amber-400', 'bg-amber-50');
+        if (idx === optionIdx) {
+          btn.classList.add(opt.isBest ? 'border-brand-500' : 'border-amber-400', opt.isBest ? 'bg-brand-50' : 'bg-amber-50');
+        }
+      });
+
+      const fbArea = document.getElementById('scenario-feedback-area');
+      fbArea.classList.remove('hidden');
+      fbArea.innerHTML = `
+        <div class="p-4 rounded-2xl ${chosen.isBest ? 'bg-emerald-50 text-emerald-900' : 'bg-amber-50 text-amber-900'} text-xs space-y-1.5">
+          <p class="font-extrabold">${chosen.isBest ? '✅ Pilihan Sangat Tepat!' : '🤔 Dampak Pilihanmu:'}</p>
+          <p class="leading-relaxed">${chosen.feedback}</p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/70 text-xs space-y-1.5">
+          <p class="font-extrabold text-slate-900">📚 Penjelasan Edukatif:</p>
+          <p class="text-slate-700 leading-relaxed">${sc.bestResponseExplanation}</p>
+          <p class="text-[10px] text-slate-400 pt-1">Referensi: ${sc.reference}</p>
+        </div>
+      `;
+    }
+
+    /**
+     * =========================================================================
+     * BAGIAN H: LOGIKA MENU 5 - HEALTH CORNER (ARTIKEL, INFOGRAFIS, FAQ)
+     * =========================================================================
+     */
+    let activeCornerTab = 'articles';
+
+    function switchCornerTab(tab) {
+      activeCornerTab = tab;
+      ['articles', 'infographics', 'faq'].forEach(t => {
+        const btn = document.getElementById(`tab-corner-${t}`);
+        if (t === tab) {
+          btn.classList.add('bg-white', 'text-brand-700', 'font-bold', 'shadow-sm');
+          btn.classList.remove('text-slate-600', 'font-semibold');
+        } else {
+          btn.classList.remove('bg-white', 'text-brand-700', 'font-bold', 'shadow-sm');
+          btn.classList.add('text-slate-600', 'font-semibold');
+        }
+      });
+      renderCornerContent();
+    }
+
+    function renderCornerContent() {
+      const container = document.getElementById('corner-content');
+      const keyword = document.getElementById('corner-search').value.toLowerCase();
+
+      if (activeCornerTab === 'articles') {
+        const list = ARTICLES_DATA.filter(a =>
+          a.title.toLowerCase().includes(keyword) || a.summary.toLowerCase().includes(keyword)
+        );
+        container.innerHTML = list.map(art => `
+          <div onclick="openArticleDetail('${art.id}')" class="p-4 rounded-3xl bg-white border border-slate-100 shadow-sm hover:border-brand-300 transition-all cursor-pointer flex items-start gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+              <i data-lucide="${art.thumbnail || 'file-text'}" class="w-6 h-6"></i>
+            </div>
+            <div class="flex-1">
+              <span class="text-[10px] font-bold text-brand-600">${art.category}</span>
+              <h3 class="text-sm font-bold text-slate-900 leading-snug mt-0.5">${art.title}</h3>
+              <p class="text-xs text-slate-500 line-clamp-2 mt-1">${art.summary}</p>
+            </div>
+          </div>
+        `).join('') || `<p class="text-xs text-slate-500 text-center py-6">Artikel tidak ditemukan.</p>`;
+      }
+
+      else if (activeCornerTab === 'infographics') {
+        const list = INFOGRAPHICS_DATA.filter(i => i.title.toLowerCase().includes(keyword));
+        container.innerHTML = list.map(inf => `
+          <div class="p-5 rounded-3xl bg-white border border-slate-100 shadow-sm space-y-3">
+            <span class="px-2.5 py-0.5 rounded-full bg-brand-50 text-brand-700 text-[10px] font-bold">${inf.category}</span>
+            <h3 class="text-sm font-extrabold text-slate-900">${inf.title}</h3>
+            <div class="space-y-2">
+              ${inf.items.map((pt, i) => `
+                <div class="p-3 rounded-2xl bg-brand-50/50 border border-brand-100 flex items-start gap-2.5">
+                  <span class="w-5 h-5 rounded-full bg-brand-600 text-white text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">${i + 1}</span>
+                  <div>
+                    <p class="text-xs font-bold text-slate-800">${pt.label}</p>
+                    <p class="text-xs text-slate-600 mt-0.5">${pt.desc}</p>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+            <p class="text-[10px] text-slate-400">Referensi: ${inf.reference}</p>
+          </div>
+        `).join('') || `<p class="text-xs text-slate-500 text-center py-6">Infografis tidak ditemukan.</p>`;
+      }
+
+      else if (activeCornerTab === 'faq') {
+        const list = FAQ_DATA.filter(f =>
+          f.question.toLowerCase().includes(keyword) || f.answer.toLowerCase().includes(keyword)
+        );
+        container.innerHTML = list.map(faq => `
+          <details class="group p-4 rounded-3xl bg-white border border-slate-100 shadow-sm">
+            <summary class="list-none flex items-center justify-between cursor-pointer gap-2">
+              <div>
+                <span class="text-[10px] font-bold text-brand-600 block mb-0.5">${faq.category}</span>
+                <h4 class="text-xs font-bold text-slate-900">${faq.question}</h4>
+              </div>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0"></i>
+            </summary>
+            <div class="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-600 leading-relaxed space-y-1.5">
+              <p>${faq.answer}</p>
+              <p class="text-[10px] text-slate-400">Ref: ${faq.reference}</p>
+            </div>
+          </details>
+        `).join('') || `<p class="text-xs text-slate-500 text-center py-6">FAQ tidak ditemukan.</p>`;
+      }
+
+      safeRenderIcons();
+    }
+
+    function openArticleDetail(articleId) {
+      const art = ARTICLES_DATA.find(a => a.id === articleId);
+      if (!art) return;
+
+      // Tandai artikel sudah dibaca
+      if (!userState.readArticles.includes(articleId)) {
+        userState.readArticles.push(articleId);
+        saveUserState();
+      }
+
+      document.getElementById('modal-badge').textContent = art.category;
+      document.getElementById('modal-body').innerHTML = `
+        <h2 class="text-lg font-extrabold text-slate-900 leading-snug">${art.title}</h2>
+        <p class="text-[11px] text-slate-400">Diperbarui: ${art.dateUpdated}</p>
+        <div class="space-y-3 text-xs text-slate-700 leading-relaxed pt-2">
+          ${art.content.map(p => `<p>${p}</p>`).join('')}
+        </div>
+        <div class="p-3.5 rounded-2xl bg-slate-50 text-[11px] text-slate-500 mt-4">
+          <span class="font-bold text-slate-700">Sumber Referensi:</span> ${art.reference}
+        </div>
+      `;
+
+      document.getElementById('detail-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('detail-modal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
